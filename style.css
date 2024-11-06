@@ -28,7 +28,7 @@ main{
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr 1fr;
   grid-template-areas: 
-  "stock1 frutas stock2"
+  "stack1 frutas stack2"
   ". embudo .";
   height: 95%;
   justify-items: center;
@@ -56,37 +56,39 @@ main{
   justify-content: center;
 }
 #stack-1{
-  grid-area: stock1;
-  width: 100%;
-  display: flex;
-  flex-direction: column-reverse;
-  flex-wrap: wrap; /* Permite apilar varias columnas de cajas */
-  justify-content: space-between;
-  overflow: hidden; /* Oculta el contenido que se desborde */
+  grid-area: stack1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   border: 5px solid rgb(219, 224, 226);
   background-color: rgba(147, 185, 179, 0.973);
+  overflow: auto;
+  width: -webkit-fill-available;
+  align-items: center;
+  justify-items: center;
 }
 #stack-2{
-  grid-area: stock2;
-  width: 100%;
-  display: flex;
-  flex-direction: column-reverse;
-  flex-wrap: wrap;
-  overflow: hidden;
+  grid-area: stack2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   border: 5px solid rgb(219, 224, 226);
   background-color: rgba(147, 185, 179, 0.973);
-  align-content: space-around;
+  overflow: auto;
+  width: -webkit-fill-available;
+  align-items: center;
+  justify-items: center;
 }
 #box{
-  margin: 2px;
-  font-size: 2.2rem;
-  background-color: rgba(245, 243, 247, 0.856);
-  border: 3px solid rgb(82, 50, 11);
-  flex-shrink: 0;
+  margin: 0;
   display: flex;
-  justify-items: center;
-  width: 50px;
-  height: 50px;
+  position: sticky;
+  font-size: 2rem;
+  width: fit-content;
+  height: fit-content;
+  background-color: rgba(245, 243, 247, 0.856);
+
+  border: 3px solid rgb(82, 50, 11);
 }
 .embudo{
   width: 100%;
@@ -107,16 +109,19 @@ aside{
 }
 #inputPlayer {
   width: 90%;
-  height: 20%;
+  height: 25%;
   margin: 0 auto;
   padding: 10px;
   border-radius: 12px;
-  background-color: rgba(73, 61, 46, 0.8);
-  color: aquamarine;
+  background-color: rgba(8, 115, 177, 0.8);
+  font-weight: bold;
+  color: antiquewhite;
   border: 2px solid silver;
   font-family: 'Courier New', Courier, monospace;
   font-size: 1.2rem;
   resize: vertical;
+  padding: 5px;
+  box-sizing: border-box;
 }
 #inputPlayer:focus {
   outline: none;
@@ -125,6 +130,7 @@ aside{
 }
 .manual{
   background-color: rgb(209, 209, 151);
+  height: 25%;
   font-weight: bold;
   text-align: center;
   border-radius: 12px;
@@ -133,8 +139,15 @@ aside{
 #oculto{
   display: none;
 }
+.character{
+  height: 45%;
+  display: flex;
+  justify-content: center;
+}
 aside img{
-  width: 100%;
+  display: flex;
+  width: auto;
+  height: 100%;
 }
 .buttons{
   display: flex;
