@@ -5,27 +5,25 @@ Array Quest es un juego didáctico diseñado para enseñar a los jugadores a man
 
 ---
 
-### **Nivel 1: Crear un Array e Insertar Elementos**
+### **Nivel TUTORIAL: Crear un Array e Insertar Elementos**
 **Objetivo:** Aprender a crear un array e insertar elementos en él.
 
 1. **Crea un array vacío llamado `stack`**:
    ```javascript
-   let mochila = [];
-   console.log("Created an empty mochila:", mochila);
+   let stack = [];
+
    ```
    
 
 
-3. **Inserta los elementos "manzana" y "naranja" con `.push()`**:
+2. **Inserta los elementos "manzana" y "naranja" con `.push()`**:
    ```javascript
-   mochila.push(manzana);
-   mochila.push(naranja);
-   console.log("After inserting items:", stack1);
+   stack.push(manzana);
+   stack.push(naranja);
    ```
-   
 ---
 
-### **Nivel 2: Eliminar Elementos con `pop()` y `shift()`**
+### **Nivel 1: Eliminar Elementos con `pop()` y `shift()`**
 **Objetivo:** Aprender a eliminar elementos del array.
 
 1. **Eliminar el último elemento (`agua`) con `.pop()`**:

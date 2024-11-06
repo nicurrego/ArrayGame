@@ -3,10 +3,21 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(58, 80, 65);
+  background-color: rgb(99, 223, 223);
   min-height: 100vh;
   max-height: 100vh;
   overflow: hidden;
+}
+.start-screen{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  background-color: rgb(155, 223, 99);
 }
 .game-screen{
   height: 86vh;
@@ -26,8 +37,9 @@ body{
 main{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 5fr 5fr;
   grid-template-areas: 
+  "name frutas name2"
   "stack1 frutas stack2"
   ". embudo .";
   height: 95%;
@@ -55,6 +67,13 @@ main{
   align-items: center;
   justify-content: center;
 }
+.name{
+  font-size: 2.6rem;
+  margin: 0;
+  color: aquamarine;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+}
 #stack-1{
   grid-area: stack1;
   display: grid;
@@ -79,7 +98,10 @@ main{
   align-items: center;
   justify-items: center;
 }
-#box{
+#stack-1, #stack-2 {
+  transition: all 0.5s ease-in-out;
+}
+.box{
   margin: 0;
   display: flex;
   position: sticky;
@@ -128,13 +150,22 @@ aside{
   border: 3px solid aquamarine;
   box-shadow: 0 0 10px aquamarine;
 }
-.manual{
-  background-color: rgb(209, 209, 151);
-  height: 25%;
-  font-weight: bold;
+.manual {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
   text-align: center;
-  border-radius: 12px;
-  margin-left: 5px;
+  font-size: 1.2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #333;
+  line-height: 1.5;
+  font-family: 'Arial', sans-serif;
+  z-index: 5;
 }
 #oculto{
   display: none;
