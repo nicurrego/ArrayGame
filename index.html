@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Array Cat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <section class="game-screen">
+    <main>
+      <div class="embudo">
+        <img src="imagenes/embudo.png" alt="">
+      </div>
+      <div id="stack-1">
+        <p id="box">🍒</p>
+      </div>
+      <!-- cada elemento contiene una imagen de referencia y un span que indica la cantidad de ese elemento -->
+      <section class="frutas">
+        <div class="elemento">
+          <div class="fruta" id="manzana">🍎</div>
+        </div>
+        <div class="elemento">
+          <div class="fruta" id="naranja">🍊</div>
+        </div>
+        <div class="elemento"
+        ><div class="fruta" id="sandia">🍉</div></div>
+        <div class="elemento">
+          <div class="fruta" id="banana">🍌</div>
+        </div>
+        <div class="elemento">
+          <div class="fruta" id="fresa">🍓</div>
+        </div>
+        <div class="elemento">
+          <div class="fruta" id="uva">🍇</div>
+        </div>
+        <div class="elemento">
+          <div class="fruta" id="cereza">🍒</div>
+        </div>
+        <div class="elemento">
+          <div class="fruta" id="kiwi">🥝</div>
+        </div>
+        <div class="elemento">
+          <div class="fruta" id="pinapple">🍍</div>
+        </div>
+      </section>
+      <div id="stack-2">
+        <p id="box">🥝</p>
+        <p id="box">🥝</p>
+        <p id="box">🥝</p>
+      </div>
+    </main>
+    <aside>
+      <textarea name="inputPlayer" id="inputPlayer"></textarea>
+      <div class="manual" id="oculto">
+        <p>
+          <strong>Este es el manual de instrucciones</strong>
+        Hola!
+      <br>
+        Esta es la guía que te ayudara a completar las tareas en cada nivel!
+      <br>
+        Entonces, empecemos!</p>
+      </div>
+      <div class="buttons">
+        <button class="btn-61"><span>Button</span></button>
+        <button class="btn-61"><span>Button</span></button>
+      </div>
+      <div class="character">
+        <img src="imagenes/Cat happy.png" alt="gatoSerio">
+      </div>
+     
+      <button class="btn-61" id="start"><span>- START -</span></button>
+    </aside>
+  </section>
+  
+
+  <script src="script.js"></script>
+</body>
+</html>

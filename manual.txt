@@ -1,0 +1,185 @@
+**Manual del Juego: Array Quest**
+
+**Introducción:**
+Array Quest es un juego didáctico diseñado para enseñar a los jugadores a manipular arrays en JavaScript. A lo largo de 10 niveles progresivos, aprenderás cómo crear, modificar y gestionar arrays, utilizando varios métodos comunes en la programación. Cada nivel se basa en habilidades específicas y se desarrolla con una lógica sencilla que imita la vida real para facilitar el aprendizaje.
+
+---
+
+### **Nivel 1: Crear un Array e Insertar Elementos**
+**Objetivo:** Aprender a crear un array e insertar elementos en él.
+
+1. **Crea un array vacío llamado `stack`**:
+   ```javascript
+   let mochila = [];
+   console.log("Created an empty mochila:", mochila);
+   ```
+   
+
+
+3. **Inserta los elementos "manzana" y "naranja" con `.push()`**:
+   ```javascript
+   mochila.push(manzana);
+   mochila.push(naranja);
+   console.log("After inserting items:", stack1);
+   ```
+   
+---
+
+### **Nivel 2: Eliminar Elementos con `pop()` y `shift()`**
+**Objetivo:** Aprender a eliminar elementos del array.
+
+1. **Eliminar el último elemento (`agua`) con `.pop()`**:
+   ```javascript
+   let itemRemoved = mochila.pop();
+   console.log(`Removed item (from end): ${itemRemoved}`);
+   console.log("After pop:", mochila);
+   ```
+
+2. **Agregar algunos elementos adicionales**:
+   ```javascript
+   let item3 = "linterna";
+   let item4 = "mapa";
+   mochila.push(item3);
+   mochila.push(item4);
+   console.log("After adding more items:", mochila);
+   ```
+
+3. **Eliminar el primer elemento (`manzana`) con `.shift()`**:
+   ```javascript
+   itemRemoved = mochila.shift();
+   console.log(`Removed item (from start): ${itemRemoved}`);
+   console.log("After shift:", mochila);
+   ```
+   
+---
+
+### **Nivel 3: Acceder a un Elemento usando su Índice**
+**Objetivo:** Aprender a acceder a un elemento del array utilizando su índice.
+
+1. **Preparar el índice al que se quiere acceder**:
+   ```javascript
+   let indexToAccess = 0;
+   ```
+
+2. **Acceder al elemento**:
+   ```javascript
+   let itemAccessed = mochila[indexToAccess];
+   console.log(`Accessed item at index ${indexToAccess}: ${itemAccessed}`);
+   ```
+
+---
+
+### **Nivel 4: Comprobar si un Elemento Existe (`includes()` y `indexOf()`)**
+**Objetivo:** Aprender a buscar un elemento en un array.
+
+1. **Buscar si un elemento está presente con `.includes()`**:
+   ```javascript
+   let itemToCheck = "mapa";
+   let hasMap = mochila.includes(itemToCheck);
+   console.log(`Does mochila contain '${itemToCheck}'?: ${hasMap}`);
+   ```
+
+2. **Encontrar la posición de un elemento con `.indexOf()`**:
+   ```javascript
+   let indexOfMap = mochila.indexOf(itemToCheck);
+   console.log(`Index of '${itemToCheck}': ${indexOfMap}`);
+   ```
+
+---
+
+### **Nivel 5: Agregar al Inicio (`unshift()`) y Eliminar por Índice (`splice()`)**
+**Objetivo:** Aprender a agregar y eliminar elementos en posiciones específicas del array.
+
+1. **Agregar un elemento al inicio con `.unshift()`**:
+   ```javascript
+   let itemToAdd = "brújula";
+   mochila.unshift(itemToAdd);
+   console.log("After unshift (adding 'brújula'):", mochila);
+   ```
+
+2. **Eliminar un elemento en una posición específica con `.splice()`**:
+   ```javascript
+   let indexToRemove = 1;
+   mochila.splice(indexToRemove, 1);
+   console.log(`After removing item at index ${indexToRemove} (linterna):`, mochila);
+   ```
+
+---
+
+### **Nivel 6: Ordenar un Array Alfabéticamente (`sort()`)**
+**Objetivo:** Aprender a ordenar los elementos del array.
+
+1. **Agregar más elementos**:
+   ```javascript
+   let item5 = "tienda";
+   let item6 = "comida";
+   mochila.push(item5);
+   mochila.push(item6);
+   console.log("Before sorting:", mochila);
+   ```
+
+2. **Ordenar con `.sort()`**:
+   ```javascript
+   mochila.sort();
+   console.log("After sorting:", mochila);
+   ```
+
+---
+
+### **Nivel 7: Filtrar Elementos (`filter()`)**
+**Objetivo:** Aprender a filtrar elementos en base a una condición.
+
+1. **Filtrar elementos que comienzan con 'b'**:
+   ```javascript
+   let itemsStartingWithB = mochila.filter(item => item.startsWith('b'));
+   console.log("Items starting with 'b':", itemsStartingWithB);
+   ```
+
+---
+
+### **Nivel 8: Modificar Elementos (`map()`)**
+**Objetivo:** Aprender a modificar todos los elementos de un array.
+
+1. **Modificar cada elemento agregando un sufijo**:
+   ```javascript
+   let modifiedItems = mochila.map(item => `${item}-Arry's Item`);
+   console.log("Modified items:", modifiedItems);
+   ```
+
+---
+
+### **Nivel 9: Iterar sobre el Array (`forEach()`)**
+**Objetivo:** Aprender a recorrer el array y ejecutar una operación en cada elemento.
+
+1. **Iterar con `.forEach()`**:
+   ```javascript
+   mochila.forEach((item, index) => {
+       console.log(`Item at index ${index}: ${item}`);
+   });
+   ```
+
+---
+
+### **Nivel 10: Concatenar Arrays y Desestructurar**
+**Objetivo:** Aprender a combinar arrays y desestructurar el resultado.
+
+1. **Concatenar dos arrays con `.concat()`**:
+   ```javascript
+   let extraItems = ["linterna", "mochila extra"];
+   let combinedMochila = mochila.concat(extraItems);
+   console.log("Combined array:", combinedMochila);
+   ```
+
+2. **Desestructurar el array combinado**:
+   ```javascript
+   let [firstItem, secondItem, ...remainingItems] = combinedMochila;
+   console.log(`First item: ${firstItem}`);
+   console.log(`Second item: ${secondItem}`);
+   console.log("Remaining items:", remainingItems);
+   ```
+
+---
+
+**Conclusión:**
+Cada nivel de Array Quest introduce un concepto clave en la manipulación de arrays, desde crear y modificar hasta ordenar y combinar arrays. La idea es que al final del juego, tengas una comprensión sólida de cómo funcionan los arrays y cómo puedes manipularlos para resolver problemas comunes en la programación.
+
