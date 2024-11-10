@@ -3,7 +3,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(99, 223, 223);
+  background-color: teal;
   min-height: 100vh;
   max-height: 100vh;
   overflow: hidden;
@@ -51,7 +51,7 @@ main{
   margin: 0 5px;
   padding: 3px 0;
   align-self: start;
-  background-color: rgba(240, 248, 255, 0.411);
+  background-color: rgba(211, 206, 206, 0.411);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -60,7 +60,7 @@ main{
   border-radius: 12px;
 }
 .elemento{
-  background-color: #ffffff9c;
+  background-color: #1b1b1b9c;
   border: 3px solid rgb(156, 98, 32);
   border-radius: 12px;
   display: flex;
@@ -74,7 +74,7 @@ main{
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
 }
-#stack-1{
+.stack-1{
   grid-area: stack1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -86,7 +86,7 @@ main{
   align-items: center;
   justify-items: center;
 }
-#stack-2{
+.stack-2{
   grid-area: stack2;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -108,7 +108,7 @@ main{
   font-size: 2rem;
   width: fit-content;
   height: fit-content;
-  background-color: rgba(245, 243, 247, 0.856);
+  background-color: rgba(245, 243, 247, 0.959);
 
   border: 3px solid rgb(82, 50, 11);
 }
@@ -151,23 +151,52 @@ aside{
   box-shadow: 0 0 10px aquamarine;
 }
 .manual {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  max-width: 400px;
-  text-align: center;
-  font-size: 1.2rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #333;
-  line-height: 1.5;
-  font-family: 'Arial', sans-serif;
-  z-index: 5;
+  background: rgba(255, 244, 230, 0.9);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 500px;
+    height: 400px;
+    text-align: center;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 50%;
+    left: 43%;
+    transform: translate(-50%, -50%);
+    color: #333;
+    line-height: 1.5;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    z-index: 1;
 }
-#oculto{
+.manualButtons{
+  display: flex;
+    justify-content: space-around;
+}
+.mensajes {
+    background: rgba(255, 244, 230, 0.9);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 500px;
+    height: 400px;
+    text-align: center;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 50%;
+    left: 43%;
+    transform: translate(-50%, -50%);
+    color: #333;
+    line-height: 1.5;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    z-index: 1;
+}
+.oculto{
   display: none;
 }
 .character{

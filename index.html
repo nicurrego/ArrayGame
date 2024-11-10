@@ -12,31 +12,36 @@
     <button class="btn-61"><span>- play -</span></button>
   </div>
   
-  <div class="manual" id="oculto">
-    <p>
-      <strong>Este es el manual de instrucciones</strong>
-    Hola!
-  <br>
-    Esta es la guía que te ayudara a completar las tareas en cada nivel!
-  <br>
-    Entonces, empecemos!</p>
+  <div class="manual oculto">
+    <section class="manualText">
+      <p><strong>Este es el manual de instrucciones</strong></p>
+      <p>La guía que te ayudara a completar las tareas en cada nivel!</p>
+      <p>Entonces, empecemos!</p>
+    </section>
+    <section class="manualButtons">
+      <button class="btn-61" id="manualPrevButton"><span>- prev -</span></button>
+      <button class="btn-61" id="manualNextButton"><span>- next -</span></button>
+    </section>
+  </div>
+  <div class="mensajes oculto">
+    <section class="mensajeText">
+    </section>
+      <button class="btn-61" id="mensajeButton"><span>- ok -</span></button>
   </div>
   
   <section class="game-screen">
     <main>
-      <p class="name">stack-1</p>
-      <p class="name">stack-2</p>
-      <div class="embudo">
+      <p class="name name1 oculto">stack-1</p>
+      <p class="name name2 oculto">stack-2</p>
+      <div class="embudo oculto">
         <img src="imagenes/embudo.png" alt="">
       </div>
-      <div id="stack-1">
-        <p class="box">🍒</p>
+      <div class="stack-1 oculto">
       </div>
       <!-- cada elemento contiene una imagen de referencia y un span que indica la cantidad de ese elemento -->
-      <section class="frutas">
+      <section class="frutas oculto">
       </section>
-      <div id="stack-2">
-        <p class="box">🥝</p>
+      <div class="stack-2 oculto">
       </div>
     </main>
     <aside>
@@ -45,14 +50,14 @@
       <button class="btn-61" id="start"><span>- START -</span></button>
       
       <div class="character">
-        <img src="imagenes/Cat happy.png" alt="gatoSerio">
       </div>
       <div class="buttons">
-        <button class="btn-61"><span>- manual -</span></button>
+        <button class="btn-61 manualButton"><span>- manual -</span></button>
         <button class="btn-61"><span>- settings -</span></button>
       </div>
     </aside>
   </section>
+  
   <script src="script.js"></script>
 </body>
 </html>

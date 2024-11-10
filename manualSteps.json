@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Bienvenido a Array Cat!",
+    "content": "Este es un juego interactivo en el que te puedes familiarizar con el funcionamiento de los arrays..."
+  },
+  {
+    "title": "Manual de Instrucciones",
+    "content": "Esta es la guía que te ayudará a completar las tareas en cada nivel. Entonces, empecemos!<br><br>-> Escribe el código requerido en el <span style=\"color: blue;\">campo de entrada</span>.<br>-> Haz click en los botones correspondientes para avanzar en el juego."
+  },
+  {
+    "title": "Crea un array!",
+    "content": "Primero necesitamos crear un <code>array</code> para poder insertar elementos en él.<br><br>-> En esta sección tienes que escribir el código:<br> <code>let stack = [];</code><br><br>-> Una vez esté todo listo haz click en el botón de <code>START</code>."
+  }
+]
