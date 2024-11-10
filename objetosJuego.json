@@ -1,0 +1,94 @@
+{
+  "Frutas": [
+    {
+      "name": "apple",
+      "emoji": "🍎"
+    },
+    {
+      "name": "orange",
+      "emoji": "🍊"
+    },
+    {
+      "name": "banana",
+      "emoji": "🍌"
+    },
+    {
+      "name": "strawberry",
+      "emoji": "🍓"
+    },
+    {
+      "name": "grape",
+      "emoji": "🍇"
+    },
+    {
+      "name": "cherry",
+      "emoji": "🍒"
+    },
+    {
+      "name": "kiwi",
+      "emoji": "🥝"
+    },
+    {
+      "name": "pineapple",
+      "emoji": "🍍"
+    },
+    {
+      "name": "peach",
+      "emoji": "🍑"
+    },
+    {
+      "name": "lemon",
+      "emoji": "🍋"
+    },
+    {
+      "name": "mango",
+      "emoji": "🥭"
+    },
+    {
+      "name": "blueberry",
+      "emoji": "🫐"
+    },
+    {
+      "name": "pear",
+      "emoji": "🍐"
+    },
+    {
+      "name": "coconut",
+      "emoji": "🥥"
+    },
+    {
+      "name": "melon",
+      "emoji": "🍈"
+    },
+    {
+      "name": "watermelon",
+      "emoji": "🍉"
+    }
+  ],
+  "otherObjects": [
+    {
+      "name": "phone",
+      "emoji": "📱"
+    },
+    {
+      "name": "pc",
+      "emoji": "💻"
+    },
+    {
+      "name": "cat",
+      "emoji": "🐱"
+    },
+    {
+      "name": "clock",
+      "emoji": "⏰"
+    },
+    {
+      "name": "keys",
+      "emoji": "🔑"
+    },
+    {
+      "name": "soccer ball",
+      "emoji": "⚽️"
+    }
+  ]
+}

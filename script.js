@@ -17,80 +17,67 @@ const stackContainerName2 = document.querySelector('.name2');
 const startButton = document.querySelector('#start');
 const frutaContainer = document.querySelector('.frutas');
 
-// Definimos el array de frutas seleccionadas por el jugador *para mas adelante*
-const frutasSeleccionadas = [];
+//Fetch de los JSON
+async function fetchData(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Error al cargar ${url}: ${response.statusText}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Fetch error:', error);
+    throw error;
+  }
+}
+let expresionesPersonaje = [];
+let listadoMensajes = [];
+let manualSteps = [];
+let currentStepIndex = 0;
+let objetosJuego = [];
 
-// Definimos las frutas y los stacks
-const frutas = [
-  { name: 'apple', emoji: '🍎' },
-  { name: 'orange', emoji: '🍊' },
-  { name: 'watermelon', emoji: '🍉' },
-  { name: 'banana', emoji: '🍌' },
-  { name: 'strawberry', emoji: '🍓' },
-  { name: 'grape', emoji: '🍇' },
-  { name: 'cherry', emoji: '🍒' },
-  { name: 'kiwi', emoji: '🥝' },
-  { name: 'pineapple', emoji: '🍍' },
-  { name: 'peach', emoji: '🍑' },
-  { name: 'lemon', emoji: '🍋' },
-  { name: 'mango', emoji: '🥭' },
-  { name: 'blueberry', emoji: '🫐' },
-  { name: 'pear', emoji: '🍐' },
-  { name: 'coconut', emoji: '🥥' },
-  { name: 'papaya', emoji: '🍈' }
-];
+// Cargar las expresiones del personaje
+fetchData('expresionesPersonaje.json')
+  .then(data => {
+    expresionesPersonaje = data;
+  })
+  .catch(error => {
+    console.error('No se pudo cargar las expresiones del personaje:', error);
+  });
 
-// expresiones del gato
-const expresionesPersonaje = [
-  {
-    nombre: 'normal',
-    imagen: 'imagenes/Cat normal.png',
-  },
-  {
-    nombre: 'happy',
-    imagen: 'imagenes/Cat happy.png',
-  },
-  {
-    nombre: 'speaking',
-    imagen: 'imagenes/Cat open mouth.png',
-  },
-  {
-    nombre: 'sad',
-    imagen: 'imagenes/Cat sad.png',
-  },
-  {
-    nombre: 'mad',
-    imagen: 'imagenes/Cat serious.png',
-  },
-];
+// Cargar los mensajes por niveles
+fetchData('listadoMensajes.json')
+  .then(data => {
+    listadoMensajes = data;
+  })
+  .catch(error => {
+    console.error('No se pudo cargar los mensajes por niveles:', error);
+  });
 
-// Mensajes por niveles
-const listadoMensajes = [
-  //nivel tutorial = index 0
-  {
-    // Mensajes correctos e incorrectos
-    mensajesCorrectos: [
-      '¡Bien hecho! Has creado el array. Ahora vamos a aprender cómo trabajar con él.',
-    ],
-    mensajesIncorrectos: [
-      'Ups, parece que algo no está bien. Intenta de nuevo.'
-    ]
-  },
-  //nivel tutorial 2da parte = index 1
-  {
-    // Mensajes correctos e incorrectos
-    mensajesCorrectos: [
-      '¡Bien hecho! Has insertado una fruta en el array. Ahora vamos a repetir lo aprendido para hacer otro array y ponerle otras frutas.',
-    ],
-    mensajesIncorrectos: [
-      'Ups, parece que algo no está bien. Intenta de nuevo.'
-    ]
-  },
-];
+// Cargar los pasos del manual
+fetchData('manualSteps.json')
+  .then(data => {
+    manualSteps = data;
+    actualizarManual(currentStepIndex);
+  })
+  .catch(error => {
+    console.error('No se pudo cargar el manual de instrucciones:', error);
+  });
+
+// Cargar los objetos juego
+fetchData('objetosJuego.json')
+  .then(data => {
+    objetosJuego = data;
+  })
+  .catch(error => {
+    console.error('No se pudo cargar los objetos del juego:', error);
+  });
+
+
+
 
 // Mostrar la pantalla de inicio al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
-  actualizarExpresion('sad');
   loadFrutas(); // Función para cargar las frutas
   loadStacks(); // Función para cargar los stacks
 });
@@ -166,6 +153,8 @@ playButton.addEventListener('click', () => {
     console.error('Elementos necesarios para iniciar el tutorial no encontrados.');
     return;
   }
+  // Primera expresion del gato
+  actualizarExpresion('sad');
 
   // Ocultar la pantalla de inicio
   startScreen.classList.add('oculto');
@@ -179,32 +168,12 @@ playButton.addEventListener('click', () => {
   }, 600);
 });
 
-// Cargar los pasos del manual desde un archivo JSON
-let manualSteps = [];
-fetch('manualSteps.json')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('No se pudo cargar el manual de instrucciones.');
-    }
-    return response.json();
-  })
-  .then(data => {
-    manualSteps = data;
-    actualizarManual(currentStepIndex);
-  })
-  .catch(error => {
-    console.error('Error al cargar el manual:', error);
-  });
-
-let currentStepIndex = 0;
-
 // Función para actualizar el contenido del manual
 function actualizarManual(stepIndex) {
   if (!manualText) {
     console.error('Contenedor del manual no encontrado.');
     return;
   }
-
   const step = manualSteps[stepIndex];
   if (step) {
     manualText.innerHTML = `<p><strong>${step.title}</strong></p><p>${step.content}</p>`;

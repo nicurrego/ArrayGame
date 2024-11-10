@@ -1,0 +1,22 @@
+[
+  {
+    "nombre": "normal",
+    "imagen": "imagenes/Cat normal.png"
+  },
+  {
+    "nombre": "happy",
+    "imagen": "imagenes/Cat happy.png"
+  },
+  {
+    "nombre": "speaking",
+    "imagen": "imagenes/Cat open mouth.png"
+  },
+  {
+    "nombre": "sad",
+    "imagen": "imagenes/Cat sad.png"
+  },
+  {
+    "nombre": "mad",
+    "imagen": "imagenes/Cat serious.png"
+  }
+]
