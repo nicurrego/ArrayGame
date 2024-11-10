@@ -90,20 +90,37 @@ const listadoMensajes = [
 
 // Mostrar la pantalla de inicio al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
-  mostrarExpresion('sad');
+  actualizarExpresion('sad');
   loadFrutas(); // Función para cargar las frutas
   loadStacks(); // Función para cargar los stacks
 });
 
-function mostrarExpresion(expresionNombre) {
+function actualizarExpresion(expresionNombre = null) {
   // Selecciona el contenedor donde deseas mostrar la imagen
   const contenedorImagen = document.querySelector('.character');
-  // Actualizamos el src y alt
+  // Seleccionamos la imagen
   let imgElement = contenedorImagen.querySelector('img');
   if (!imgElement) {
     // Si no existe, la creamos
     imgElement = document.createElement('img');
     contenedorImagen.appendChild(imgElement);
+  }
+
+  // Determinar la expresión a mostrar, si no, se proporciona una
+  if (!expresionNombre) {
+    if (!manual.classList.contains('oculto')) {
+      expresionNombre = 'speaking';
+    } else if (!mensajes.classList.contains('oculto')) {
+      // Mostrar la expresión dependiendo del tipo de mensaje
+      const mensajeTexto = document.querySelector('.mensajeText p')?.textContent;
+      if (mensajeTexto && listadoMensajes.some(l => l.mensajesIncorrectos.includes(mensajeTexto))) {
+        expresionNombre = 'mad';
+      } else {
+        expresionNombre = 'happy';
+      }
+    } else {
+      expresionNombre = 'normal';
+    }
   }
 
   // Encontrar la expresión en el array de expresiones del personaje
@@ -115,23 +132,6 @@ function mostrarExpresion(expresionNombre) {
   // Actualizar la imagen existente
   imgElement.src = expresion.imagen;
   imgElement.alt = expresion.nombre;
-}
-
-// Lógica para mostrar al gato en diferentes interacciones
-function actualizarExpresionSegunEstado() {
-  if (!manual.classList.contains('oculto')) {
-    mostrarExpresion('speaking');
-  } else if (!mensajes.classList.contains('oculto')) {
-    // Mostrar la expresión dependiendo del tipo de mensaje
-    const mensajeTexto = document.querySelector('.mensajeText p')?.textContent;
-    if (mensajeTexto && listadoMensajes.some(l => l.mensajesIncorrectos.includes(mensajeTexto))) {
-      mostrarExpresion('mad');
-    } else {
-      mostrarExpresion('happy');
-    }
-  } else {
-    mostrarExpresion('normal');
-  }
 }
 
 function loadFrutas() {
@@ -175,7 +175,7 @@ playButton.addEventListener('click', () => {
     manual.classList.remove('oculto');
     currentStepIndex = 0;
     actualizarManual(currentStepIndex);
-    mostrarExpresion('speaking');
+    actualizarExpresion('speaking');
   }, 600);
 });
 
@@ -216,10 +216,10 @@ manualNextButton.addEventListener('click', () => {
   if (currentStepIndex < manualSteps.length - 1) {
     currentStepIndex++;
     actualizarManual(currentStepIndex);
-    mostrarExpresion('speaking');
+    actualizarExpresion('speaking');
   } else if (currentStepIndex === manualSteps.length - 1) {
     manual.classList.add('oculto');
-    actualizarExpresionSegunEstado();
+    actualizarExpresion();
   }
 });
 
@@ -227,7 +227,7 @@ manualPrevButton.addEventListener('click', () => {
   if (currentStepIndex > 0) {
     currentStepIndex--;
     actualizarManual(currentStepIndex);
-    mostrarExpresion('speaking');
+    actualizarExpresion('speaking');
   }
 });
 
@@ -235,16 +235,16 @@ manualPrevButton.addEventListener('click', () => {
 gameScreen.addEventListener('click', (e) => {
   if (!manual.contains(e.target) && e.target !== manualButton) {
     manual.classList.add('oculto');
-    actualizarExpresionSegunEstado();
+    actualizarExpresion();
   } else if (e.target === manualButton) {
     manual.classList.remove('oculto');
-    mostrarExpresion('speaking');
+    actualizarExpresion('speaking');
   }
 });
 
 mensajeButton.addEventListener('click', () => {
   mensajes.classList.add('oculto');
-  actualizarExpresionSegunEstado();
+  actualizarExpresion();
 });
 
 function mostrarMensaje(mensajeTexto) {
@@ -266,6 +266,7 @@ function mostrarMensaje(mensajeTexto) {
   
   // Mostrar el contenedor de mensajes si estaba oculto
   mensajes.classList.remove('oculto');
+  actualizarExpresion();
 }
 
 // Función para verificar el contenido del textarea cuando se haga click en START
@@ -293,6 +294,7 @@ startButton.addEventListener('click', () => {
         mostrarMensaje(listadoMensajes[nivel].mensajesCorrectos[Math.floor(Math.random() * listadoMensajes[nivel].mensajesCorrectos.length)]);
       }, 1000);
   } else {
+    actualizarExpresion('mad');
     mostrarMensaje(listadoMensajes[nivel].mensajesIncorrectos[Math.floor(Math.random() * listadoMensajes[nivel].mensajesIncorrectos.length)]);
   }
 });
