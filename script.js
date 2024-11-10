@@ -16,6 +16,7 @@ const stackContainerName1 = document.querySelector('.name1');
 const stackContainerName2 = document.querySelector('.name2');
 const startButton = document.querySelector('#start');
 const frutaContainer = document.querySelector('.frutas');
+const frutasSeleccionadas = [];
 
 //Fetch de los JSON
 async function fetchData(url) {
@@ -99,7 +100,7 @@ function actualizarExpresion(expresionNombre = null) {
       expresionNombre = 'speaking';
     } else if (!mensajes.classList.contains('oculto')) {
       // Mostrar la expresión dependiendo del tipo de mensaje
-      const mensajeTexto = document.querySelector('.mensajeText p')?.textContent;
+      const mensajeTexto = document.querySelector('.mensajeTextContiner p')?.textContent;
       if (mensajeTexto && listadoMensajes.some(l => l.mensajesIncorrectos.includes(mensajeTexto))) {
         expresionNombre = 'mad';
       } else {
@@ -217,21 +218,21 @@ mensajeButton.addEventListener('click', () => {
 });
 
 function mostrarMensaje(mensajeTexto) {
-  const mensajeText = document.querySelector('.mensajeText');
-  if (!mensajeText) {
+  const mensajeTextContiner = document.querySelector('.mensajeText');
+  if (!mensajeTextContiner) {
     console.error('Contenedor de mensaje no encontrado.');
     return;
   }
 
   // Limpiamos el contenido de los mensajes anteriores
-  mensajeText.innerHTML = '';
+ mensajeTextContiner.innerHTML = '';
 
   // Crear un nuevo elemento <p>
   const newMensaje = document.createElement('p');
   newMensaje.textContent = mensajeTexto;
 
   // Añadir el nuevo mensaje al contenedor de mensajes
-  mensajeText.appendChild(newMensaje);
+ mensajeTextContiner.appendChild(newMensaje);
   
   // Mostrar el contenedor de mensajes si estaba oculto
   mensajes.classList.remove('oculto');
@@ -245,16 +246,14 @@ startButton.addEventListener('click', () => {
     return;
   }
   let userInput = inputPlayer.value.trim();
-
   // Normalizar el input del usuario: quitamos espacios múltiples y reemplazamos con un único espacio
   userInput = userInput.replace(/\s+/g, ' ');
-
   // Crear una expresión regular que acepte diferentes variantes del código válido
   const validPattern = /^let\s+stack\s*=\s*\[\s*\];$/;
 
-  // Verificar si el contenido del textarea cumple con el patrón
+  
   const nivel = 0; // Nivel actual, puedes cambiarlo según el progreso del juego
-
+  // Verificar si el contenido del textarea cumple con el patrón
   if (validPattern.test(userInput)) {
     // Mostrar stack-1
     stackContainer1.classList.remove('oculto');
@@ -263,7 +262,6 @@ startButton.addEventListener('click', () => {
         mostrarMensaje(listadoMensajes[nivel].mensajesCorrectos[Math.floor(Math.random() * listadoMensajes[nivel].mensajesCorrectos.length)]);
       }, 1000);
   } else {
-    actualizarExpresion('mad');
     mostrarMensaje(listadoMensajes[nivel].mensajesIncorrectos[Math.floor(Math.random() * listadoMensajes[nivel].mensajesIncorrectos.length)]);
   }
 });
@@ -274,7 +272,6 @@ function loadStacks() {
     console.error('Contenedores de stacks no encontrados.');
     return;
   }
-
   const stack1 = JSON.parse(localStorage.getItem('stack1')) || [];
   const stack2 = JSON.parse(localStorage.getItem('stack2')) || [];
 

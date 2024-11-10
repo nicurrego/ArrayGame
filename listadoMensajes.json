@@ -1,14 +1,24 @@
 [
-  {
-    "mensajesCorrectos":
-      "¡Bien hecho! Has creado el array. Ahora vamos a aprender cómo trabajar con él.",
-    "mensajesIncorrectos": 
-      "Ups, parece que algo no está bien. Intenta de nuevo."
+  { 
+    "tutorial": 
+    [
+      {
+      "mensajesCorrectos":
+        "¡Bien hecho! Has creado el array. Ahora vamos a aprender cómo trabajar con él.",
+      "mensajesIncorrectos": 
+        "Ups, parece que algo no está bien. Intenta de nuevo."
+      }
+    ]
   },
   {
-    "mensajesCorrectos":
-    "¡Bien hecho! Haz insertado una fruta en el array. Ahora vamos a repetir lo aprendido.",
-    "mensajesIncorrectos":
-    "Ups, parece que algo no esta bien. Intenta de nuevo."
+    "tutorial2": 
+    [
+      {
+        "mensajesCorrectos":
+        "¡Bien hecho! Haz insertado una fruta en el array. Ahora vamos a repetir lo aprendido.",
+        "mensajesIncorrectos":
+        "Ups, parece que algo no esta bien. Intenta de nuevo."
+      }
+    ]
   }
 ]
