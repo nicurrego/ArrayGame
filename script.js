@@ -47,25 +47,50 @@ const expresionesPersonaje = [
     imagen: 'imagenes/Cat normal.png',
   },
   {
-    nombre: 'feliz',
+    nombre: 'happy',
     imagen: 'imagenes/Cat happy.png',
   },
   {
-    nombre: 'hablando',
+    nombre: 'speaking',
     imagen: 'imagenes/Cat open mouth.png',
   },
   {
-    nombre: 'triste',
+    nombre: 'sad',
     imagen: 'imagenes/Cat sad.png',
   },
   {
-    nombre: 'serio',
+    nombre: 'mad',
     imagen: 'imagenes/Cat serious.png',
+  },
+];
+
+// Mensajes por niveles
+const listadoMensajes = [
+  //nivel tutorial = index 0
+  {
+    // Mensajes correctos e incorrectos
+    mensajesCorrectos: [
+      '¡Bien hecho! Has creado el array. Ahora vamos a aprender cómo trabajar con él.',
+    ],
+    mensajesIncorrectos: [
+      'Ups, parece que algo no está bien. Intenta de nuevo.'
+    ]
+  },
+  //nivel tutorial 2da parte = index 1
+  {
+    // Mensajes correctos e incorrectos
+    mensajesCorrectos: [
+      '¡Bien hecho! Has insertado una fruta en el array. Ahora vamos a repetir lo aprendido para hacer otro array y ponerle otras frutas.',
+    ],
+    mensajesIncorrectos: [
+      'Ups, parece que algo no está bien. Intenta de nuevo.'
+    ]
   },
 ];
 
 // Mostrar la pantalla de inicio al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
+  mostrarExpresion('sad');
   loadFrutas(); // Función para cargar las frutas
   loadStacks(); // Función para cargar los stacks
 });
@@ -92,8 +117,22 @@ function mostrarExpresion(expresionNombre) {
   imgElement.alt = expresion.nombre;
 }
 
-while (!manual.classList.contains('oculto'))
-  mostrarExpresion('normal');
+// Lógica para mostrar al gato en diferentes interacciones
+function actualizarExpresionSegunEstado() {
+  if (!manual.classList.contains('oculto')) {
+    mostrarExpresion('speaking');
+  } else if (!mensajes.classList.contains('oculto')) {
+    // Mostrar la expresión dependiendo del tipo de mensaje
+    const mensajeTexto = document.querySelector('.mensajeText p')?.textContent;
+    if (mensajeTexto && listadoMensajes.some(l => l.mensajesIncorrectos.includes(mensajeTexto))) {
+      mostrarExpresion('mad');
+    } else {
+      mostrarExpresion('happy');
+    }
+  } else {
+    mostrarExpresion('normal');
+  }
+}
 
 function loadFrutas() {
   if (!frutaContainer) {
@@ -121,7 +160,7 @@ function loadFrutas() {
   });
 }
 
-// Función para inicializar el tutorial
+// Función para inicializar el juego
 playButton.addEventListener('click', () => {
   if (!startScreen || !manual) {
     console.error('Elementos necesarios para iniciar el tutorial no encontrados.');
@@ -133,10 +172,10 @@ playButton.addEventListener('click', () => {
 
   // Mostrar el manual después de 1 segundo
   setTimeout(() => {
-    mostrarExpresion('hablando');
     manual.classList.remove('oculto');
     currentStepIndex = 0;
     actualizarManual(currentStepIndex);
+    mostrarExpresion('speaking');
   }, 600);
 });
 
@@ -177,8 +216,10 @@ manualNextButton.addEventListener('click', () => {
   if (currentStepIndex < manualSteps.length - 1) {
     currentStepIndex++;
     actualizarManual(currentStepIndex);
+    mostrarExpresion('speaking');
   } else if (currentStepIndex === manualSteps.length - 1) {
     manual.classList.add('oculto');
+    actualizarExpresionSegunEstado();
   }
 });
 
@@ -186,23 +227,24 @@ manualPrevButton.addEventListener('click', () => {
   if (currentStepIndex > 0) {
     currentStepIndex--;
     actualizarManual(currentStepIndex);
+    mostrarExpresion('speaking');
   }
 });
 
 // Función para ocultar el manual al hacer clic en el textarea
 gameScreen.addEventListener('click', (e) => {
   if (!manual.contains(e.target) && e.target !== manualButton) {
-    mostrarExpresion('normal'); // Volver a la expresión "normal" cuando se oculta el manual
     manual.classList.add('oculto');
+    actualizarExpresionSegunEstado();
   } else if (e.target === manualButton) {
-    mostrarExpresion('hablando'); // Cambiar la expresión a "hablando" cuando se muestra el manual
     manual.classList.remove('oculto');
+    mostrarExpresion('speaking');
   }
 });
 
 mensajeButton.addEventListener('click', () => {
-  mostrarExpresion('normal'); // Volver a la expresión "normal" después de ocultar el mensaje
   mensajes.classList.add('oculto');
+  actualizarExpresionSegunEstado();
 });
 
 function mostrarMensaje(mensajeTexto) {
@@ -232,7 +274,6 @@ startButton.addEventListener('click', () => {
     console.error('Campo de entrada no encontrado.');
     return;
   }
-
   let userInput = inputPlayer.value.trim();
 
   // Normalizar el input del usuario: quitamos espacios múltiples y reemplazamos con un único espacio
@@ -242,17 +283,17 @@ startButton.addEventListener('click', () => {
   const validPattern = /^let\s+stack\s*=\s*\[\s*\];$/;
 
   // Verificar si el contenido del textarea cumple con el patrón
-  if (validPattern.test(userInput)) {
-    // Mostrar la imagen de "feliz"
-    mostrarExpresion('feliz');
-    // Mostrar stack-1
+  const nivel = 0; // Nivel actual, puedes cambiarlo según el progreso del juego
 
+  if (validPattern.test(userInput)) {
+    // Mostrar stack-1
     stackContainer1.classList.remove('oculto');
     stackContainerName1.classList.remove('oculto');
-    mostrarMensaje('¡Bien hecho! Has creado el array. Ahora vamos a aprender cómo trabajar con él.');
+      setTimeout(() => {
+        mostrarMensaje(listadoMensajes[nivel].mensajesCorrectos[Math.floor(Math.random() * listadoMensajes[nivel].mensajesCorrectos.length)]);
+      }, 1000);
   } else {
-    mostrarExpresion('hablando');
-    mostrarMensaje('Error: Por favor, asegúrate de escribir correctamente el código');
+    mostrarMensaje(listadoMensajes[nivel].mensajesIncorrectos[Math.floor(Math.random() * listadoMensajes[nivel].mensajesIncorrectos.length)]);
   }
 });
 
