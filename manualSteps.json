@@ -1,6 +1,6 @@
 [
   {
-    "nivel tutorial":
+    "nivelTutorial":
     [
       {
         "title": "Bienvenido a Array Cat!",
@@ -17,7 +17,7 @@
     ]
   },
   {
-    "nivel 1":
+    "nivel_1":
     [
       {
         "title": "Bienvenido a Array Cat!",
@@ -34,7 +34,7 @@
     ]
   },
   {
-    "nivel 2":
+    "nivel_2":
     [
       {
         "title": "Bienvenido a Array Cat!",
@@ -51,7 +51,7 @@
     ]
   },
   {
-    "nivel 3":
+    "nivel_3":
     [
       {
         "title": "Bienvenido a Array Cat!",
@@ -68,7 +68,7 @@
     ]
   },
   {
-    "nivel 4":
+    "nivel_4":
     [
       {
         "title": "Bienvenido a Array Cat!",
@@ -85,7 +85,7 @@
     ]
   },
   {
-    "nivel 5":
+    "nivel_5":
     [
       {
         "title": "Bienvenido a Array Cat!",
@@ -102,7 +102,7 @@
     ]
   },
   {
-    "nivel 6":
+    "nivel_6":
     [
       {
         "title": "Bienvenido a Array Cat!",
