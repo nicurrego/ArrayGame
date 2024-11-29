@@ -1,0 +1,9 @@
+{
+  "nivel_0": [
+    { "pattern": "^let\\s+stack\\s*=\\s*\\[\\s*\\];$", "description": "Crear un array vacío" },
+    { "pattern": "^stack\\.push\\(.*cherry.*\\);$", "description": "Añadir cherry al array" }
+  ],
+  "nivel_1": [
+    { "pattern": "^stack\\.pop\\(\\);$", "description": "Eliminar el último elemento del array" }
+  ]
+}

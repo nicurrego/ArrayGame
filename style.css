@@ -171,6 +171,9 @@ aside{
     justify-content: space-around;
     z-index: 1;
 }
+.titulo p{
+  font-weight: bold;
+}
 .manualButtons{
   display: flex;
     justify-content: space-around;

@@ -14,6 +14,7 @@ const mensajes = document.querySelector('.mensajes');
 const mensajeButton = document.querySelector('#mensajeButton');
 
 const inputPlayer = document.querySelector('#inputPlayer');
+const startButton = document.querySelector('#start');
 
 const gameScreen = document.querySelector('.game-screen');
 const stackContainer1 = document.querySelector('.stack-1');
@@ -23,7 +24,6 @@ const stackContainerName2 = document.querySelector('.name2');
 const frutaContainer = document.querySelector('.frutas');
 const frutasSeleccionadas = [];
 
-const startButton = document.querySelector('#start');
 
 //Fetch de los JSON
 async function fetchData(url) {
@@ -67,6 +67,26 @@ fetchData('listadoMensajes.json')
     console.error('No se pudo cargar los mensajes por niveles:', error);
   });
 
+// Cargar los patrones por niveles
+let patronesNivel = [];
+fetchData('patronesNivel.json')
+  .then(data => {
+    patronesNivel = data;
+  })
+  .catch(error => {
+    console.error('No se pudo cargar los patrones por niveles:', error);
+  });
+
+// Cargar los objetos juego
+let objetosJuego = [];
+fetchData('objetosJuego.json')
+  .then(data => {
+    objetosJuego = data;
+  })
+  .catch(error => {
+    console.error('No se pudo cargar los objetos del juego:', error);
+  });
+
 // Contadores para los niveles y los pasos actuales
 let indexCount = 0;
 let levelCount = 0;
@@ -102,15 +122,23 @@ function nuevoNivel(levelCount) {
 }
 let niveles = [
   {
-    nivel_0: [
-      { title: 'Introducción', content: 'Bienvenido al nivel 0. Este es el primer paso.' },
-      { title: 'Paso 1', content: 'Este es el contenido del paso 1 del nivel 0.' }
-    ]
-  },
-  {
-    nivel_1: [
-      { title: 'Nivel Intermedio', content: 'Bienvenido al nivel 1. Este es un nivel intermedio.' },
-      { title: 'Paso 1', content: 'Este es el contenido del paso 1 del nivel 1.' }
+    "nivel_0": [
+      {
+        "title": "Bienvenido a Array Cat!",
+        "content": " Aquí aprenderás los conceptos básicos de los arrays de una forma divertida y práctica."
+      },
+      {
+        "title": "Manual de instrucciones",
+        "content": "Este manual te ayudará a comprender cómo avanzar en el juego. <br><br> -> Puedes acceder a este manual en cualquier momento por si necesitas alguna pista o te sientes perdido. "
+      },
+      {
+        "title": "Vamos a empezar!",
+        "content": "Escribe el código en el campo de entrada<br><br><span style=\"color: blue;\">el area de color azul</span>.<br>-> Haz click en los botones para proceder."
+      },
+      {
+        "title": "Creando tu Primer Array",
+        "content": "Para empezar, vamos a crear un <code>array</code> vacío.<br><br>-> Escribe el siguiente código:<br> <code>let stack = [];</code><br><br>-> Luego presiona el botón de <code>START</code> para continuar."
+      }
     ]
   }
 ];
@@ -123,22 +151,9 @@ fetchData('niveles.json')
     console.error('No se pudo cargar el manual de instrucciones:', error);
   });
 
-// Cargar los objetos juego
-let objetosJuego = [];
-fetchData('objetosJuego.json')
-  .then(data => {
-    objetosJuego = data;
-  })
-  .catch(error => {
-    console.error('No se pudo cargar los objetos del juego:', error);
-  });
-
-
-
 // Mostrar la pantalla de inicio al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
   loadFrutas(); // Función para cargar las frutas
-  loadStacks(); // Función para cargar los stacks
 });
 
 function actualizarExpresion(expresionNombre = null) {
@@ -227,25 +242,16 @@ playButton.addEventListener('click', () => {
   }, 600);
 });
 
+// Variables globales para el control del estado del manual
+let nivelAlcanzado = 0; // Nivel máximo que el usuario ha logrado alcanzar
+let nivelActual = niveles[levelCount]; // Nivel actual dentro de la estructura 'niveles'
+let claveNivel = Object.keys(nivelActual)[0]; // Clave del nivel actual
+
 // Función para actualizar el contenido del manual según el nivel y paso actual
 function actualizarManual() {
-  // Verificar que 'niveles' no esté vacío antes de acceder a sus elementos
-  if (niveles.length === 0) {
-    console.error('El contenido de los niveles aún no está disponible.');
-    return;
-  }
-
-  // 'nivelActual' representa el nivel actual dentro de la estructura 'niveles'
-  const nivelActual = niveles[levelCount];
-  
-  // Verificar que el nivel actual exista
-  if (!nivelActual || !nivelActual[`nivel_${levelCount}`] || indexCount < 0 || indexCount >= nivelActual[`nivel_${levelCount}`].length) {
-    console.error('El nivel o paso actual no es válido.');
-    return;
-  }
-
   // 'pasoActual' se refiere al paso específico dentro del nivel actual
   const pasoActual = nivelActual[`nivel_${levelCount}`][indexCount];
+
   nuevoTituloManual(pasoActual.title); // Actualiza el título del manual
   nuevoContenidoManual(pasoActual.content); // Actualiza el contenido del manual utilizando innerHTML
   nuevoIndex(indexCount); // Actualiza el valor del índice actual en el DOM
@@ -254,13 +260,20 @@ function actualizarManual() {
 
 // Evento para avanzar al siguiente paso o nivel
 manualNextButton.addEventListener('click', () => {
-  const nivelActual = niveles[levelCount];
-  const claveNivel = Object.keys(nivelActual)[0];
   if (indexCount < nivelActual[claveNivel].length - 1) {
     indexCount++;
   } else if (levelCount < niveles.length - 1) {
     levelCount++;
+    if (levelCount > nivelAlcanzado) {
+      manual.classList.add('oculto');
+      actualizarExpresion('normal')
+      // mostrarMensaje("Primero tienes que completar el nivel para ver la siguiente instrucción.");
+      levelCount--
+      return;
+    }
     indexCount = 0;
+    nivelActual = niveles[levelCount];
+    claveNivel = Object.keys(nivelActual)[0];
   }
   actualizarManual();
 });
@@ -271,14 +284,19 @@ manualPrevButton.addEventListener('click', () => {
     indexCount--;
   } else if (levelCount > 0) {
     levelCount--;
-    const claveNivel = Object.keys(niveles[levelCount])[0];
-    indexCount = niveles[levelCount][claveNivel].length - 1;
+    nivelActual = niveles[levelCount];
+    claveNivel = Object.keys(nivelActual)[0];
+    indexCount = nivelActual[claveNivel].length - 1;
   }
+
   actualizarManual();
 });
 
-
-
+// Función para mostrar un mensaje en la interfaz
+function mostrarMensaje(mensaje) {
+  // Aquí se podría implementar la lógica para mostrar un mensaje al usuario de manera no intrusiva
+  console.log(mensaje); // Por ahora se utiliza console.log, pero se podría reemplazar por lógica de interfaz
+}
 // Función para actualizar el título del manual
 function nuevoTituloManual(mensaje){
   // Limpiamos el contenedor del título
@@ -344,7 +362,7 @@ mensajeButton.addEventListener('click', () => {
 });
 
 function mostrarMensaje(mensajeTexto) {
-  const mensajeTextContiner = document.querySelector('.mensajeText');
+  const mensajeTextContiner = document.querySelector('.mensajeTextContiner');
   if (!mensajeTextContiner) {
     console.error('Contenedor de mensaje no encontrado.');
     return;
@@ -365,65 +383,60 @@ function mostrarMensaje(mensajeTexto) {
   actualizarExpresion();
 }
 
+let levelStage = 0; // Indicador para la secuencia de los mensajes
 // Función para verificar el contenido del textarea cuando se haga click en START
 startButton.addEventListener('click', () => {
   if (!inputPlayer) {
     console.error('Campo de entrada no encontrado.');
     return;
   }
+  
   let userInput = inputPlayer.value.trim();
   // Normalizar el input del usuario: quitamos espacios múltiples y reemplazamos con un único espacio
   userInput = userInput.replace(/\s+/g, ' ');
-  // Crear una expresión regular que acepte diferentes variantes del código válido
-  const validPattern = /^let\s+stack\s*=\s*\[\s*\];$/;
 
+  // Obtener el patrón válido actual desde el JSON de patrones
+  const nivelActual = patronesNivel[levelCount];
+  const claveNivel = `nivel_${levelCount}`;
   
-  const nivel = 0; // Nivel actual, puedes cambiarlo según el progreso del juego
+  // Verificar que el nivel y paso existen
+  if (!nivelActual || !nivelActual[claveNivel] || indexCount >= nivelActual[claveNivel].length) {
+    console.error('El nivel o paso actual no es válido.');
+    return;
+  }
+
+  const pasoActual = nivelActual[claveNivel][indexCount];
+  
+  if (!pasoActual || !pasoActual.pattern) {
+    console.error('El patrón para el paso actual no está disponible.');
+    return;
+  }
+
+  // Crear la expresión regular desde el patrón
+  const validPattern = new RegExp(pasoActual.pattern);
+  
   // Verificar si el contenido del textarea cumple con el patrón
   if (validPattern.test(userInput)) {
-    // Mostrar stack-1
-    stackContainer1.classList.remove('oculto');
-    stackContainerName1.classList.remove('oculto');
-      setTimeout(() => {
-        mostrarMensaje(listadoMensajes[nivel].mensajesCorrectos[Math.floor(Math.random() * listadoMensajes[nivel].mensajesCorrectos.length)]);
-      }, 1000);
+    // Input válido para el paso actual
+    mostrarMensaje(listadoMensajes[levelCount][claveNivel][indexCount].mensajesCorrectos);
+    
+    // Avanzar al siguiente paso
+    indexCount++;
+
+    // Si se completaron todos los pasos del nivel, pasar al siguiente nivel
+    if (indexCount >= nivelActual[claveNivel].length) {
+      levelCount++;
+      indexCount = 0; // Reiniciar el contador de pasos
+      mostrarMensaje(`¡Felicidades! Has completado el nivel ${levelCount - 1}. Ahora pasarás al nivel ${levelCount}.`);
+    }
+
+    // Actualizar el manual y el nivel en la interfaz
+    actualizarManual();
+    nuevoNivel(levelCount);
+
   } else {
-    mostrarMensaje(listadoMensajes[nivel].mensajesIncorrectos[Math.floor(Math.random() * listadoMensajes[nivel].mensajesIncorrectos.length)]);
+    // Input inválido
+    mostrarMensaje(listadoMensajes[levelCount][claveNivel][indexCount].mensajesIncorrectos);
   }
 });
 
-// Función para actualizar los stacks desde el localStorage
-function loadStacks() {
-  if (!stackContainer1 || !stackContainer2) {
-    console.error('Contenedores de stacks no encontrados.');
-    return;
-  }
-  const stack1 = JSON.parse(localStorage.getItem('stack1')) || [];
-  const stack2 = JSON.parse(localStorage.getItem('stack2')) || [];
-
-  // Limpiamos los stacks antes de añadir los elementos
-  stackContainer1.innerHTML = '';
-  stackContainer2.innerHTML = '';
-
-  // Añadimos los elementos del stack1
-  stack1.forEach((frutaName) => {
-    const fruta = frutas.find(f => f.name === frutaName);
-    if (fruta) {
-      const frutaElement = document.createElement('p');
-      frutaElement.className = 'box';
-      frutaElement.textContent = fruta.emoji;
-      stackContainer1.appendChild(frutaElement);
-    }
-  });
-
-  // Añadimos los elementos del stack2
-  stack2.forEach((frutaName) => {
-    const fruta = frutas.find(f => f.name === frutaName);
-    if (fruta) {
-      const frutaElement = document.createElement('p');
-      frutaElement.className = 'box';
-      frutaElement.textContent = fruta.emoji;
-      stackContainer2.appendChild(frutaElement);
-    }
-  });
-}

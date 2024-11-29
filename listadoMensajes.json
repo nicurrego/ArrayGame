@@ -1,6 +1,6 @@
 [
   { 
-    "tutorial": 
+    "nivel_0": 
     [
       {
       "mensajesCorrectos":
@@ -11,7 +11,7 @@
     ]
   },
   {
-    "tutorial2": 
+    "nivel_1": 
     [
       {
         "mensajesCorrectos":

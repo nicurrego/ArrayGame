@@ -2,14 +2,22 @@
   {
     "nivel_0": [
       {
-        "title": "Introducción a Array Cat!",
-        "content": "Bienvenido a Array Cat! Aquí aprenderás los conceptos básicos de los arrays de una forma divertida y práctica."
+        "paso": 0,
+        "title": "Bienvenido a Array Cat!",
+        "content": " Aquí aprenderás los conceptos básicos de los arrays de una forma divertida y práctica."
       },
       {
-        "title": "Instrucciones Básicas",
-        "content": "Este manual te ayudará a comprender cómo avanzar en el juego. Vamos a comenzar!<br><br>-> Escribe el código requerido en el <span style=\"color: blue;\">campo de entrada</span>.<br>-> Haz click en los botones para proceder."
+        "paso": 1,
+        "title": "Manual de instrucciones",
+        "content": "Este manual te ayudará a comprender cómo avanzar en el juego. <br><br> -> Puedes acceder a este manual en cualquier momento por si necesitas alguna pista o te sientes perdido. "
       },
       {
+        "paso": 2,
+        "title": "Vamos a empezar!",
+        "content": "Escribe el código en el campo de entrada<br><br><span style=\"color: blue;\">el area de color azul</span>.<br>-> Haz click en los botones para proceder."
+      },
+      {
+        "paso": 3,
         "title": "Creando tu Primer Array",
         "content": "Para empezar, vamos a crear un <code>array</code> vacío.<br><br>-> Escribe el siguiente código:<br> <code>let stack = [];</code><br><br>-> Luego presiona el botón de <code>START</code> para continuar."
       }
@@ -18,14 +26,17 @@
   {
     "nivel_1": [
       {
+        "paso": 0,
         "title": "Manipulación Básica de Arrays",
         "content": "Ahora que ya tienes un array, vamos a aprender a agregar elementos a él para darle vida."
       },
       {
+        "paso": 1, 
         "title": "Agregar Elementos",
         "content": "Vamos a añadir elementos a tu array. Puedes usar el método <code>push()</code> para agregar elementos al final.<br><br>-> Escribe el siguiente código: <code>stack.push(1);</code><br>-> Continúa pulsando el botón correspondiente."
       },
       {
+        "paso": 2,
         "title": "Verificando el Array",
         "content": "Verifica que el elemento haya sido añadido correctamente.<br><br>-> Escribe: <code>console.log(stack);</code> y observa el resultado.<br>-> Haz click en <code>CONTINUAR</code> cuando lo hayas verificado."
       }
@@ -34,14 +45,17 @@
   {
     "nivel_2": [
       {
+        "paso": 0,
         "title": "Eliminar Elementos del Array",
         "content": "Vamos a aprender cómo quitar elementos de tu array. Esto es útil para administrar su contenido."
       },
       {
+        "paso": 1,
         "title": "Eliminar con pop()",
         "content": "Puedes utilizar el método <code>pop()</code> para eliminar el último elemento del array.<br><br>-> Escribe: <code>stack.pop();</code><br>-> Revisa los cambios en el array usando <code>console.log(stack);</code>."
       },
       {
+        "paso": 2,
         "title": "Comprobación",
         "content": "Comprueba que el último elemento fue eliminado correctamente. Puedes seguir adelante si todo está bien.<br>-> Haz click en <code>SIGUIENTE</code> para continuar."
       }
@@ -50,14 +64,17 @@
   {
     "nivel_3": [
       {
+        "paso": 0,
         "title": "Acceder a Elementos del Array",
         "content": "En este nivel aprenderás cómo acceder a elementos específicos del array usando índices."
       },
       {
+        "paso": 1,
         "title": "Índices y Acceso",
         "content": "Cada elemento en un array tiene un índice, comenzando desde 0.<br><br>-> Escribe: <code>console.log(stack[0]);</code> para ver el primer elemento.<br>-> Haz click en <code>CONTINUAR</code> una vez lo hayas hecho."
       },
       {
+        "paso": 2,
         "title": "Modificación de Elementos",
         "content": "También puedes modificar los elementos accediendo a ellos con su índice.<br><br>-> Cambia el primer elemento escribiendo: <code>stack[0] = 10;</code><br>-> Verifica el cambio con <code>console.log(stack);</code>."
       }
@@ -66,14 +83,17 @@
   {
     "nivel_4": [
       {
+        "paso": 0,
         "title": "Iterando sobre un Array",
         "content": "En este nivel aprenderás cómo recorrer un array usando bucles para realizar operaciones en cada elemento."
       },
       {
+        "paso": 1,
         "title": "Uso del bucle for",
         "content": "Utiliza un bucle <code>for</code> para recorrer el array e imprimir cada elemento.<br><br>-> Escribe: <code>for(let i = 0; i < stack.length; i++) { console.log(stack[i]); }</code><br>-> Observa cómo se imprimen los elementos."
       },
       {
+        "paso": 2,
         "title": "Iteración Completa",
         "content": "Prueba con diferentes arrays y observa cómo cambia el comportamiento del bucle.<br>-> Experimenta un poco y haz click en <code>SIGUIENTE</code> cuando estés listo."
       }
@@ -82,14 +102,17 @@
   {
     "nivel_5": [
       {
+        "paso": 0,
         "title": "Métodos de Arrays Avanzados",
         "content": "Vamos a explorar métodos más avanzados como <code>map()</code> y <code>filter()</code> para trabajar con arrays."
       },
       {
+        "paso": 1,
         "title": "Método map()",
         "content": "El método <code>map()</code> crea un nuevo array aplicando una función a cada elemento.<br><br>-> Escribe: <code>let newArray = stack.map(x => x * 2);</code><br>-> Verifica el contenido de <code>newArray</code> usando <code>console.log(newArray);</code>."
       },
       {
+        "paso": 2,
         "title": "Método filter()",
         "content": "El método <code>filter()</code> permite crear un nuevo array solo con elementos que cumplan una condición.<br><br>-> Escribe: <code>let filteredArray = stack.filter(x => x > 5);</code><br>-> Comprueba el resultado con <code>console.log(filteredArray);</code>."
       }
@@ -98,14 +121,17 @@
   {
     "nivel_6": [
       {
+        "paso": 0,
         "title": "Resumen y Desafío Final",
         "content": "Ya hemos cubierto todos los conceptos básicos y avanzados sobre arrays. Ahora pongamos todo en práctica."
       },
       {
+        "paso": 1,
         "title": "Desafío Final",
         "content": "Usa todo lo aprendido para crear, modificar y filtrar un array de tu elección.<br><br>-> Crea un array y agrega elementos, luego aplica métodos como <code>map()</code>, <code>filter()</code> y otros.<br>-> Muestra tu array final usando <code>console.log</code>."
       },
       {
+        "paso": 2,
         "title": "Conclusión",
         "content": "Felicidades por llegar al final del tutorial de Array Cat! Ahora eres capaz de manipular arrays con confianza. Recuerda practicar para fortalecer tus habilidades."
       }
