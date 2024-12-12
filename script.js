@@ -1,13 +1,16 @@
 // Seleccionar elementos del DOM
 const startScreen = document.querySelector('.start-screen');
 const playButton = document.querySelector('.start-screen button');
+const manualButton = document.querySelector('.manualButton')
 
 // Referencias a los elementos del manual en el DOM
 const manual = document.querySelector('.manual');
-const tituloManual = document.querySelector('.titulo');
-const manualText = document.querySelector('.manualText');
-const manualButton = document.querySelector('.manualButton');
+const manualTitle = document.querySelector('.manualTitle');
+const manualContent = document.querySelector('.manualContent');
+const manualBottom = document.querySelector('.manual_bottom');
 const manualPrevButton = document.querySelector('#manualPrevButton');
+const levelSpan = document.querySelector('.level span');
+const stepSpan = document.querySelector('.stepSpan span');
 const manualNextButton = document.querySelector('#manualNextButton');
 
 const mensajes = document.querySelector('.mensajes');
@@ -15,7 +18,6 @@ const mensajeButton = document.querySelector('#mensajeButton');
 
 const inputPlayer = document.querySelector('#inputPlayer');
 const startButton = document.querySelector('#start');
-
 const gameScreen = document.querySelector('.game-screen');
 const stackContainer1 = document.querySelector('.stack-1');
 const stackContainerName1 = document.querySelector('.name1');
@@ -58,25 +60,14 @@ fetchData('expresionesPersonaje.json')
   });
 
 // Cargar los mensajes por niveles
-let listadoMensajes = [];
-fetchData('listadoMensajes.json')
+let levels = [];
+fetchData('levels.json')
   .then(data => {
-    listadoMensajes = data;
+    levels = data;
   })
   .catch(error => {
-    console.error('No se pudo cargar los mensajes por niveles:', error);
+    console.error('No se pudo cargar los niveles:', error);
   });
-
-// Cargar los patrones por niveles
-let patronesNivel = [];
-fetchData('patronesNivel.json')
-  .then(data => {
-    patronesNivel = data;
-  })
-  .catch(error => {
-    console.error('No se pudo cargar los patrones por niveles:', error);
-  });
-
 // Cargar los objetos juego
 let objetosJuego = [];
 fetchData('objetosJuego.json')
@@ -87,69 +78,17 @@ fetchData('objetosJuego.json')
     console.error('No se pudo cargar los objetos del juego:', error);
   });
 
-// Contadores para los niveles y los pasos actuales
-let indexCount = 0;
-let levelCount = 0;
-const miraNivel = document.querySelector('.level');
-const miraIndex = document.querySelector('.indexCount');
+
 
 // Función para actualizar el valor del índice actual en el DOM
-function nuevoIndex(indexCount) {
-  // Limpiamos el contenedor del índice
-  while (miraIndex.firstChild) {
-    miraIndex.removeChild(miraIndex.firstChild);
-  }
-  // Creamos un nuevo párrafo en el DOM
-  const pNew = document.createElement('p');
-  // Añadimos el valor del índice al párrafo
-  pNew.textContent = 'index: ' + indexCount;
-  // Insertamos el párrafo en el contenedor del índice
-  miraIndex.appendChild(pNew);
+function showNewStep(stepCount) {
+  stepSpan.innerHTML = stepCount
 }
 
 // Función para actualizar el valor del nivel actual en el DOM
 function nuevoNivel(levelCount) {
-  // Limpiamos el contenedor del nivel
-  while (miraNivel.firstChild) {
-    miraNivel.removeChild(miraNivel.firstChild);
-  }
-  // Creamos un nuevo párrafo en el DOM
-  const pNew = document.createElement('p');
-  // Añadimos el valor del nivel al párrafo
-  pNew.innerHTML = 'level: ' + levelCount;
-  // Insertamos el párrafo en el contenedor del nivel
-  miraNivel.appendChild(pNew);
+ levelSpan.innerHTML = levelCount
 }
-let niveles = [
-  {
-    "nivel_0": [
-      {
-        "title": "Bienvenido a Array Cat!",
-        "content": " Aquí aprenderás los conceptos básicos de los arrays de una forma divertida y práctica."
-      },
-      {
-        "title": "Manual de instrucciones",
-        "content": "Este manual te ayudará a comprender cómo avanzar en el juego. <br><br> -> Puedes acceder a este manual en cualquier momento por si necesitas alguna pista o te sientes perdido. "
-      },
-      {
-        "title": "Vamos a empezar!",
-        "content": "Escribe el código en el campo de entrada<br><br><span style=\"color: blue;\">el area de color azul</span>.<br>-> Haz click en los botones para proceder."
-      },
-      {
-        "title": "Creando tu Primer Array",
-        "content": "Para empezar, vamos a crear un <code>array</code> vacío.<br><br>-> Escribe el siguiente código:<br> <code>let stack = [];</code><br><br>-> Luego presiona el botón de <code>START</code> para continuar."
-      }
-    ]
-  }
-];
-fetchData('niveles.json')
-    .then(data => {
-    niveles = data;
-    actualizarManual(indexCount);
-  })
-  .catch(error => {
-    console.error('No se pudo cargar el manual de instrucciones:', error);
-  });
 
 // Mostrar la pantalla de inicio al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
@@ -236,113 +175,71 @@ playButton.addEventListener('click', () => {
   // Mostrar el manual después de 1 segundo
   setTimeout(() => {
     manual.classList.remove('oculto');
-    indexCount = 0;
-    actualizarManual(indexCount);
+    actualizarManual(stepCount);
     actualizarExpresion('speaking');
   }, 600);
 });
 
-// Variables globales para el control del estado del manual
-let nivelAlcanzado = 0; // Nivel máximo que el usuario ha logrado alcanzar
-let nivelActual = niveles[levelCount]; // Nivel actual dentro de la estructura 'niveles'
-let claveNivel = Object.keys(nivelActual)[0]; // Clave del nivel actual
 
 // Función para actualizar el contenido del manual según el nivel y paso actual
-function actualizarManual() {
-  // 'pasoActual' se refiere al paso específico dentro del nivel actual
-  const pasoActual = nivelActual[`nivel_${levelCount}`][indexCount];
+// Contadores para los niveles y los pasos actuales
+let actualLevel;
+let actualStep;
+let levelCount = 0;
+let stepCount = 0;
+let hintCount = 0
+let reachedLevel = 0; // Nivel máximo que el usuario ha logrado alcanzar
 
-  nuevoTituloManual(pasoActual.title); // Actualiza el título del manual
-  nuevoContenidoManual(pasoActual.content); // Actualiza el contenido del manual utilizando innerHTML
-  nuevoIndex(indexCount); // Actualiza el valor del índice actual en el DOM
+function actualizarManual(stepCount) {
+  actualLevel = levels[levelCount]; 
+  actualStep = actualLevel.steps[stepCount]
+  // 'pasoActual' se refiere al paso específico dentro del nivel actual
+  nuevoTituloManual(actualStep.title); // Actualiza el título del manual
+  nuevoContenidoManual(actualStep.content); // Actualiza el contenido del manual utilizando innerHTML
+  showNewStep(stepCount); // Actualiza el valor del índice actual en el DOM
   nuevoNivel(levelCount); // Actualiza el valor del nivel actual en el DOM
 }
 
-// Evento para avanzar al siguiente paso o nivel
 manualNextButton.addEventListener('click', () => {
-  if (indexCount < nivelActual[claveNivel].length - 1) {
-    indexCount++;
-  } else if (levelCount < niveles.length - 1) {
+  if (stepCount < actualLevel.steps.length - 1) {
+    stepCount++;
+  } else if (levelCount < reachedLevel) {
     levelCount++;
-    if (levelCount > nivelAlcanzado) {
-      manual.classList.add('oculto');
-      actualizarExpresion('normal')
-      // mostrarMensaje("Primero tienes que completar el nivel para ver la siguiente instrucción.");
-      levelCount--
-      return;
-    }
-    indexCount = 0;
-    nivelActual = niveles[levelCount];
-    claveNivel = Object.keys(nivelActual)[0];
+    stepCount = 0;
+  } else {
+    mostrarMensaje("Completa el nivel actual para desbloquear el siguiente.");
+    return;
   }
-  actualizarManual();
+
+  actualizarManual(stepCount);
 });
 
-// Evento para retroceder al paso o nivel anterior
 manualPrevButton.addEventListener('click', () => {
-  if (indexCount > 0) {
-    indexCount--;
+  if (stepCount > 0) {
+    stepCount--;
   } else if (levelCount > 0) {
     levelCount--;
-    nivelActual = niveles[levelCount];
-    claveNivel = Object.keys(nivelActual)[0];
-    indexCount = nivelActual[claveNivel].length - 1;
+    stepCount = levels[levelCount].steps.length - 1;
+  } else {
+    mostrarMensaje("Ya estás en el primer nivel.");
+    return;
   }
 
-  actualizarManual();
+  actualizarManual(stepCount);
 });
+
 
 // Función para mostrar un mensaje en la interfaz
 function mostrarMensaje(mensaje) {
-  // Aquí se podría implementar la lógica para mostrar un mensaje al usuario de manera no intrusiva
   console.log(mensaje); // Por ahora se utiliza console.log, pero se podría reemplazar por lógica de interfaz
 }
 // Función para actualizar el título del manual
-function nuevoTituloManual(mensaje){
-  // Limpiamos el contenedor del título
-  while (tituloManual.firstChild) {
-    tituloManual.removeChild(tituloManual.firstChild);
-  }
-  // Creamos un nuevo párrafo en el DOM
-  const pNew = document.createElement('p');
-  // Añadimos el mensaje al párrafo
-  pNew.innerHTML = mensaje;
-  // Insertamos el párrafo en el contenedor del título
-  tituloManual.appendChild(pNew);
+function nuevoTituloManual(mensaje){  
+  manualTitle.innerHTML = mensaje;
 }
-
-// Referencia al contenedor de contenido del manual
-const contenidoManual = document.querySelector('.contenido');
-
 // Función para actualizar el contenido del manual
 function nuevoContenidoManual(mensaje){
-  // Limpiamos el contenedor del contenido
-  while (contenidoManual.firstChild) {
-    contenidoManual.removeChild(contenidoManual.firstChild);
-  }
-  // Creamos un nuevo párrafo en el DOM
-  const pNew = document.createElement('p');
-  // Añadimos el mensaje al párrafo
-  pNew.innerHTML = mensaje;
-  // Insertamos el párrafo en el contenedor del contenido
-  contenidoManual.appendChild(pNew);
-}
-
-// Referencia al contenedor extra del manual (posible uso futuro)
-const extra = document.querySelector('.extra');
-
-// Función para actualizar el contenido extra del manual
-function nuevoExtraManual(mensaje){
-  // Limpiamos el contenedor extra
-  while (extra.firstChild) {
-    extra.removeChild(extra.firstChild);
-  }
-  // Creamos un nuevo párrafo en el DOM
-  const pNew = document.createElement('p');
-  // Añadimos el mensaje al párrafo
-  pNew.innerHTML = mensaje;
-  // Insertamos el párrafo en el contenedor extra
-  extra.appendChild(pNew);
+  manualContent.innerHTML = mensaje;
 }
 
 // Función para ocultar el manual al hacer clic en el textarea
@@ -383,7 +280,6 @@ function mostrarMensaje(mensajeTexto) {
   actualizarExpresion();
 }
 
-let levelStage = 0; // Indicador para la secuencia de los mensajes
 // Función para verificar el contenido del textarea cuando se haga click en START
 startButton.addEventListener('click', () => {
   if (!inputPlayer) {
@@ -396,7 +292,7 @@ startButton.addEventListener('click', () => {
   userInput = userInput.replace(/\s+/g, ' ');
 
   // Obtener el patrón válido actual desde el JSON de patrones
-  const patronNivelActual = patronesNivel.nivel_`${levelCount}`;
+  const patronNivelActual = patronesNivel.nivel_levelCount;
   const claveNivel = `nivel_${levelCount}`;
   
   // Verificar que el nivel y paso existen
