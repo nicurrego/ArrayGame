@@ -396,16 +396,16 @@ startButton.addEventListener('click', () => {
   userInput = userInput.replace(/\s+/g, ' ');
 
   // Obtener el patrón válido actual desde el JSON de patrones
-  const nivelActual = patronesNivel[levelCount];
+  const patronNivelActual = patronesNivel.nivel_`${levelCount}`;
   const claveNivel = `nivel_${levelCount}`;
   
   // Verificar que el nivel y paso existen
-  if (!nivelActual || !nivelActual[claveNivel] || indexCount >= nivelActual[claveNivel].length) {
+  if (!patronNivelActual || !patronNivelActual[claveNivel] || indexCount >= patronNivelActual[claveNivel].length) {
     console.error('El nivel o paso actual no es válido.');
     return;
   }
 
-  const pasoActual = nivelActual[claveNivel][indexCount];
+  const pasoActual = patronNivelActual[claveNivel][indexCount];
   
   if (!pasoActual || !pasoActual.pattern) {
     console.error('El patrón para el paso actual no está disponible.');
@@ -424,7 +424,7 @@ startButton.addEventListener('click', () => {
     indexCount++;
 
     // Si se completaron todos los pasos del nivel, pasar al siguiente nivel
-    if (indexCount >= nivelActual[claveNivel].length) {
+    if (indexCount >= patronNivelActual[claveNivel].length) {
       levelCount++;
       indexCount = 0; // Reiniciar el contador de pasos
       mostrarMensaje(`¡Felicidades! Has completado el nivel ${levelCount - 1}. Ahora pasarás al nivel ${levelCount}.`);
