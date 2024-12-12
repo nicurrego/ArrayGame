@@ -10,11 +10,11 @@ const manualContent = document.querySelector('.manualContent');
 const manualBottom = document.querySelector('.manual_bottom');
 const manualPrevButton = document.querySelector('#manualPrevButton');
 const levelSpan = document.querySelector('.level span');
+const manualCloseButton = document.querySelector('#manualCloseButton')
 const stepSpan = document.querySelector('.stepSpan span');
 const manualNextButton = document.querySelector('#manualNextButton');
+const hintButton = document.querySelector('.hintButton')
 
-const mensajes = document.querySelector('.mensajes');
-const mensajeButton = document.querySelector('#mensajeButton');
 
 const inputPlayer = document.querySelector('#inputPlayer');
 const startButton = document.querySelector('#start');
@@ -25,7 +25,6 @@ const stackContainer2 = document.querySelector('.stack-2');
 const stackContainerName2 = document.querySelector('.name2');
 const frutaContainer = document.querySelector('.frutas');
 const frutasSeleccionadas = [];
-
 
 //Fetch de los JSON
 async function fetchData(url) {
@@ -48,7 +47,6 @@ async function fetchData(url) {
     }
   }
 }
-
 // Cargar las expresiones del personaje
 let expresionesPersonaje = [];
 fetchData('expresionesPersonaje.json')
@@ -59,7 +57,7 @@ fetchData('expresionesPersonaje.json')
     console.error('No se pudo cargar las expresiones del personaje:', error);
   });
 
-// Cargar los mensajes por niveles
+// Cargar el contenido de los niveles
 let levels = [];
 fetchData('levels.json')
   .then(data => {
@@ -80,15 +78,7 @@ fetchData('objetosJuego.json')
 
 
 
-// Función para actualizar el valor del índice actual en el DOM
-function showNewStep(stepCount) {
-  stepSpan.innerHTML = stepCount
-}
 
-// Función para actualizar el valor del nivel actual en el DOM
-function nuevoNivel(levelCount) {
- levelSpan.innerHTML = levelCount
-}
 
 // Mostrar la pantalla de inicio al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
@@ -110,14 +100,6 @@ function actualizarExpresion(expresionNombre = null) {
   if (!expresionNombre) {
     if (!manual.classList.contains('oculto')) {
       expresionNombre = 'speaking';
-    } else if (!mensajes.classList.contains('oculto')) {
-      // Mostrar la expresión dependiendo del tipo de mensaje
-      const mensajeTexto = document.querySelector('.mensajeTextContiner p')?.textContent;
-      if (mensajeTexto && listadoMensajes.some(l => l.mensajesIncorrectos.includes(mensajeTexto))) {
-        expresionNombre = 'mad';
-      } else {
-        expresionNombre = 'happy';
-      }
     } else {
       expresionNombre = 'normal';
     }
@@ -180,6 +162,14 @@ playButton.addEventListener('click', () => {
   }, 600);
 });
 
+// Función para actualizar el valor del índice actual en el DOM
+function showNewStep(stepCount) {
+  stepSpan.innerHTML = stepCount
+}
+// Función para actualizar el valor del nivel actual en el DOM
+function nuevoNivel(levelCount) {
+ levelSpan.innerHTML = levelCount
+}
 
 // Función para actualizar el contenido del manual según el nivel y paso actual
 // Contadores para los niveles y los pasos actuales
@@ -207,12 +197,19 @@ manualNextButton.addEventListener('click', () => {
     levelCount++;
     stepCount = 0;
   } else {
+    manual.classList.add('oculto')
+    actualizarExpresion('normal')
     mostrarMensaje("Completa el nivel actual para desbloquear el siguiente.");
     return;
   }
 
   actualizarManual(stepCount);
 });
+manualCloseButton.addEventListener('click', () => {
+  manual.classList.add('oculto')
+  actualizarExpresion('normal')
+})
+
 
 manualPrevButton.addEventListener('click', () => {
   if (stepCount > 0) {
@@ -227,8 +224,6 @@ manualPrevButton.addEventListener('click', () => {
 
   actualizarManual(stepCount);
 });
-
-
 // Función para mostrar un mensaje en la interfaz
 function mostrarMensaje(mensaje) {
   console.log(mensaje); // Por ahora se utiliza console.log, pero se podría reemplazar por lógica de interfaz
@@ -242,97 +237,38 @@ function nuevoContenidoManual(mensaje){
   manualContent.innerHTML = mensaje;
 }
 
-// Función para ocultar el manual al hacer clic en el textarea
-gameScreen.addEventListener('click', (e) => {
-  if (!manual.contains(e.target) && e.target !== manualButton) {
-    manual.classList.add('oculto');
-    actualizarExpresion();
-  } else if (e.target === manualButton) {
-    manual.classList.remove('oculto');
-    actualizarExpresion('speaking');
-  }
-});
-
-mensajeButton.addEventListener('click', () => {
-  mensajes.classList.add('oculto');
-  actualizarExpresion();
-});
-
-function mostrarMensaje(mensajeTexto) {
-  const mensajeTextContiner = document.querySelector('.mensajeTextContiner');
-  if (!mensajeTextContiner) {
-    console.error('Contenedor de mensaje no encontrado.');
-    return;
-  }
-
-  // Limpiamos el contenido de los mensajes anteriores
- mensajeTextContiner.innerHTML = '';
-
-  // Crear un nuevo elemento <p>
-  const newMensaje = document.createElement('p');
-  newMensaje.textContent = mensajeTexto;
-
-  // Añadir el nuevo mensaje al contenedor de mensajes
- mensajeTextContiner.appendChild(newMensaje);
-  
-  // Mostrar el contenedor de mensajes si estaba oculto
-  mensajes.classList.remove('oculto');
-  actualizarExpresion();
-}
-
 // Función para verificar el contenido del textarea cuando se haga click en START
 startButton.addEventListener('click', () => {
   if (!inputPlayer) {
     console.error('Campo de entrada no encontrado.');
     return;
-  }
-  
+  }  
   let userInput = inputPlayer.value.trim();
+  userInput = inputPlayer.value.trimEnd();
   // Normalizar el input del usuario: quitamos espacios múltiples y reemplazamos con un único espacio
   userInput = userInput.replace(/\s+/g, ' ');
-
   // Obtener el patrón válido actual desde el JSON de patrones
-  const patronNivelActual = patronesNivel.nivel_levelCount;
-  const claveNivel = `nivel_${levelCount}`;
-  
-  // Verificar que el nivel y paso existen
-  if (!patronNivelActual || !patronNivelActual[claveNivel] || indexCount >= patronNivelActual[claveNivel].length) {
-    console.error('El nivel o paso actual no es válido.');
-    return;
-  }
-
-  const pasoActual = patronNivelActual[claveNivel][indexCount];
-  
-  if (!pasoActual || !pasoActual.pattern) {
-    console.error('El patrón para el paso actual no está disponible.');
-    return;
-  }
-
-  // Crear la expresión regular desde el patrón
-  const validPattern = new RegExp(pasoActual.pattern);
+  let levelPattern = levels[levelCount].pattern;  
+  levelPattern = RegExp(levelPattern)
+  console.log(levelPattern);
   
   // Verificar si el contenido del textarea cumple con el patrón
-  if (validPattern.test(userInput)) {
+  if (levelPattern.test(userInput)) {
     // Input válido para el paso actual
-    mostrarMensaje(listadoMensajes[levelCount][claveNivel][indexCount].mensajesCorrectos);
-    
-    // Avanzar al siguiente paso
-    indexCount++;
-
-    // Si se completaron todos los pasos del nivel, pasar al siguiente nivel
-    if (indexCount >= patronNivelActual[claveNivel].length) {
-      levelCount++;
-      indexCount = 0; // Reiniciar el contador de pasos
-      mostrarMensaje(`¡Felicidades! Has completado el nivel ${levelCount - 1}. Ahora pasarás al nivel ${levelCount}.`);
-    }
-
-    // Actualizar el manual y el nivel en la interfaz
-    actualizarManual();
+    // mostrarMensaje(listadoMensajes[levelCount][claveNivel][indexCount].mensajesCorrectos);
+   console.log('patron correcto');
+    levelCount++;
+    stepCount = 0
+    actualizarManual(stepCount);
+    manual.classList.remove('oculto');
     nuevoNivel(levelCount);
-
-  } else {
-    // Input inválido
-    mostrarMensaje(listadoMensajes[levelCount][claveNivel][indexCount].mensajesIncorrectos);
-  }
+    } else{
+      console.log('maaaaal');
+    }
+    
 });
+manualButton.addEventListener('click', () =>{
+  manual.classList.remove('oculto')
+  actualizarExpresion('speaking')
+})
 

@@ -2,120 +2,67 @@
     {
         "level_number": 0,
         "title": "Introducción a Arrays",
-        "global_config": {
-            "default_correct_message": "¡Correcto! Has hecho un buen trabajo.",
-            "default_incorrect_message": "No te preocupes, ¡inténtalo de nuevo!"
-        },
+        "pattern": "^let\\s+stack\\s*=\\s*\\[\\];$",
+        "hints": [
+            "Recuerda usar 'let' para declarar variables.",
+            "Los arrays vacíos se simbolizan con <code>[]</code>."
+        ],
         "steps": [
-            {
-                "step_number": 0,
-                "title": "Bienvenido a Array Cat!",
-                "content": "Aquí aprenderás los conceptos básicos de los arrays de una forma divertida y práctica.",
-                "correct_message": null,
-                "incorrect_message": null,
-                "pattern": null,
-                "hints": null
-            },
-            {
-                "step_number": 1,
-                "title": "Manual de instrucciones",
-                "content": "Este manual te ayudará a comprender cómo avanzar en el juego. <br><br> -> Puedes acceder a este manual en cualquier momento por si necesitas alguna pista o te sientes perdido.",
-                "correct_message": null,
-                "incorrect_message": null,
-                "pattern": null,
-                "hints": null
-            },
-            {
-                "step_number": 2,
-                "title": "Area de input",
-                "content": "Para poder dar órdenes necesitas comunicar la orden. Ahí entra el área de input.",
-                "correct_message": "¡Bien hecho! Ahora puedes utilizar el área de input para dar órdenes.",
-                "incorrect_message": "Ups, ese no es el área de input. Sigue buscando.",
-                "pattern": null,
-                "hints": [
-                    "Me gusta el color azul.",
-                    "¿Dónde parece que puedo ingresar texto?"
-                ]
-            },
-            {
-                "step_number": 3,
-                "title": "Añadiendo un elemento",
-                "content": "Añade el string 'cherry' al array stack usando push.",
-                "correct_message": "¡Excelente! 'cherry' se ha añadido al array.",
-                "incorrect_message": "Inténtalo otra vez. Recuerda usar stack.push('cherry').",
-                "pattern": "^stack\\.push\\(.*cherry.*\\);$",
-                "hints": [
-                    "Añadir 'cherry' al array.",
-                    "Para añadir tienes que utilizar un método que empieza con la letra 'p'."
-                ]
-            }
+    {
+        "step_number": 0,
+        "title": "¡Bienvenido a Array Cat!",
+        "content": "Aquí aprenderás los conceptos básicos de los arrays de una forma divertida y práctica. Prepárate para convertirte en un maestro organizando elementos. ¡Empecemos!"
+    },
+    {
+        "step_number": 1,
+        "title": "Manual de instrucciones",
+        "content": "Este manual será tu mejor amigo durante el juego. Aquí encontrarás pistas y explicaciones para superar los retos. <br><br> -> Puedes consultarlo en cualquier momento si necesitas ayuda o te sientes perdido. ¡No dudes en usarlo!"
+    },
+    {
+        "step_number": 2,
+        "title": "Área de input",
+        "content": "Para dar órdenes al sistema, necesitas usar el <span style='color: blue;'>área de input</span>. Aquí escribirás tus comandos para interactuar con el juego."
+    },
+    {
+        "step_number": 3,
+        "title": "Creando un stack",
+        "content": "Necesitamos un lugar donde apilar las frutas. Para esto, crearemos un stack usando el comando: <code>let stack = [];</code>. Un stack es simplemente un array vacío donde puedes almacenar elementos."    }
+    
         ]
     },
     {
         "level_number": 1,
         "title": "Manipulación Básica de Arrays",
-        "global_config": {
-            "default_correct_message": "¡Bien hecho! Sigue así.",
-            "default_incorrect_message": "No es correcto, pero no te rindas."
-        },
+        "pattern": "stack.push(cherry);",
+        "hints": [
+                "Un stack es como un contenedor donde puedes guardar cosas.",
+                "Los arrays en JavaScript se simbolizan con <code>[]</code>."
+                ],
         "steps": [
             {
                 "step_number": 0,
+                "title": "Muy bien! haz creado tu primer array",
+                "content": "Ahora veamos una breve explicacion de que sucedió...."
+            },
+            {
+                "step_number": 1,
+                "title": "¿Qué es un stack? (Parte 1)",
+                "content": "Imagina que tienes muchas pelotas de tenis y necesitas guardarlas para que no se pierdan. Las colocas en un recipiente, y problema resuelto. Ese recipiente es un <b>array</b>, simbolizado por <code>[]</code>. Aquí en la fábrica, lo llamamos <i>stack</i>."
+            },
+            {
+                "step_number": 2,
+                "title": "¿Qué es un stack? (Parte 2)",
+                "content": "Una vez tienes el recipiente, necesitas poder agregar, quitar y organizar los elementos dentro de él. En JavaScript, hacemos lo mismo con un array. <br><br> Usa el comando <code>stack.push('cherry');</code> para agregar una cereza al stack."
+            },
+            {
+                "step_number": 3,
                 "title": "Eliminando un elemento",
-                "content": "Elimina el último elemento del array usando pop.",
-                "correct_message": "¡Perfecto! Has eliminado el último elemento.",
-                "incorrect_message": "Recuerda que para eliminar el último elemento se utiliza pop().",
-                "pattern": "^stack\\.pop\\(\\);$",
-                "hints": [
-                    "Piensa en quitar algo del final.",
-                    "El método comienza con 'p' y termina con 'op'."
-                ]
+                "content": "Elimina el último elemento del array usando pop."
             },
             {
-                "step_number": 1,
+                "step_number": 4,
                 "title": "Accediendo a un elemento",
-                "content": "Accede al segundo elemento del array usando índices.",
-                "correct_message": "¡Correcto! Has accedido al segundo elemento.",
-                "incorrect_message": "Recuerda que los índices comienzan en 0.",
-                "pattern": "^stack\\[1\\];$",
-                "hints": [
-                    "El primer índice es 0, así que el segundo será 1.",
-                    "Prueba stack[1]."
-                ]
-            }
-        ]
-    },
-    {
-        "level_number": 2,
-        "title": "Operaciones Intermedias",
-        "global_config": {
-            "default_correct_message": "¡Correcto! Vas avanzando rápido.",
-            "default_incorrect_message": "Sigue intentando. Lo lograrás."
-        },
-        "steps": [
-            {
-                "step_number": 0,
-                "title": "Iterando con un for",
-                "content": "Crea un bucle for para recorrer todos los elementos del array y mostrarlos en la consola.",
-                "correct_message": "¡Genial! Has recorrido el array correctamente.",
-                "incorrect_message": "Recuerda usar for(let i = 0; i < stack.length; i++) para recorrer el array.",
-                "pattern": "^for\\(let i = 0; i < stack\\.length; i\\+\\+\\) \\{.*console\\.log\\(stack\\[i\\]\\);.*\\}$",
-                "hints": [
-                    "Usa un bucle for.",
-                    "Recuerda que la longitud del array es stack.length."
-                ]
-            },
-            {
-                "step_number": 1,
-                "title": "Filtrando elementos",
-                "content": "Crea una nueva variable filteredStack que contenga solo los elementos mayores a 5.",
-                "correct_message": "¡Perfecto! Has filtrado correctamente los elementos.",
-                "incorrect_message": "Intenta usar stack.filter para crear filteredStack.",
-                "pattern": "^let filteredStack = stack\\.filter\\(.*=>.*> 5\\);$",
-                "hints": [
-                    "Para filtrar, usa el método .filter().",
-                    "La función flecha puede ayudarte: (element) => element > 5."
-                ]
+                "content": "Accede al segundo elemento del array usando índices."
             }
         ]
     }

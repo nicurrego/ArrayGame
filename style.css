@@ -143,7 +143,7 @@ aside{
 }
 .manual {
   background: rgba(255, 244, 230, 0.9);
-    padding: 15px;
+    padding: 10px;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     width: 500px;
@@ -158,37 +158,24 @@ aside{
     line-height: 1.5;
     font-family: 'Arial', sans-serif;
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
-    justify-content: space-around;
     z-index: 1;
+}
+.manual_top{
+  display: flex;
+  padding-top: 20px;
+  justify-content: space-between;
+  font-size: small;
 }
 .manualTitle{
   font-weight: bold;
+  font-size: large;
 }
 .manual_bottom{
   display: flex;
-    justify-content: space-around;
-}
-.mensajes {
-    background: rgba(255, 244, 230, 0.9);
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    width: 500px;
-    height: 400px;
-    text-align: center;
-    font-size: 1.2rem;
-    position: absolute;
-    top: 50%;
-    left: 43%;
-    transform: translate(-50%, -50%);
-    color: #333;
-    line-height: 1.5;
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    z-index: 1;
+  justify-content: space-around;
+  padding-bottom: 10px;
 }
 .oculto{
   display: none;
