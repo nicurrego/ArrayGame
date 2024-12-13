@@ -1,68 +1,68 @@
 [
     {
         "level_number": 0,
-        "title": "Introducción a Arrays",
+        "title": "配列の紹介",
         "pattern": "^let\\s+stack\\s*=\\s*\\[\\];$",
         "hints": [
-            "Recuerda usar 'let' para declarar variables.",
-            "Los arrays vacíos se simbolizan con <code>[]</code>."
+            "変数を宣言するには 'let' を使用してください。",
+            "空の配列は <code>[]</code> で表します。"
         ],
         "steps": [
-    {
-        "step_number": 0,
-        "title": "¡Bienvenido a Array Cat!",
-        "content": "Aquí aprenderás los conceptos básicos de los arrays de una forma divertida y práctica. Prepárate para convertirte en un maestro organizando elementos. ¡Empecemos!"
-    },
-    {
-        "step_number": 1,
-        "title": "Manual de instrucciones",
-        "content": "Este manual será tu mejor amigo durante el juego. Aquí encontrarás pistas y explicaciones para superar los retos. <br><br> -> Puedes consultarlo en cualquier momento si necesitas ayuda o te sientes perdido. ¡No dudes en usarlo!"
-    },
-    {
-        "step_number": 2,
-        "title": "Área de input",
-        "content": "Para dar órdenes al sistema, necesitas usar el <span style='color: blue;'>área de input</span>. Aquí escribirás tus comandos para interactuar con el juego."
-    },
-    {
-        "step_number": 3,
-        "title": "Creando un stack",
-        "content": "Necesitamos un lugar donde apilar las frutas. Para esto, crearemos un stack usando el comando: <code>let stack = [];</code>. Un stack es simplemente un array vacío donde puedes almacenar elementos."    }
-    
+            {
+                "step_number": 0,
+                "title": "ようこそ、Array Catへ！",
+                "content": "ここでは、<br>配列の基本的な概念を楽しく実践的に学べます。<br>要素を整理する達人になれるよう、準備を整えましょう。<p>始めましょう！</p>"
+            },
+            {
+                "step_number": 1,
+                "title": "マニュアルの使い方",
+                "content": "このマニュアルはゲーム中のベストパートナーです。ここでヒントや説明を見つけて、チャレンジをクリアしてください。<br><br> -> 困ったり迷ったりしたら、いつでも参照できます。ぜひ活用してください！"
+            },
+            {
+                "step_number": 2,
+                "title": "入力エリア",
+                "content": "システムに命令を与えるには、<strong><span style='color: blue;'>入力エリア</span></strong> を使用します。ここにコマンドを入力してゲームと対話します。"
+            },
+            {
+                "step_number": 3,
+                "title": "スタックの作成",
+                "content": "フルーツを積み上げる場所が必要です。そのため、以下のコマンドを使用してスタックを作成します：<p><strong><code>let stack = [];</code></strong></p><p>スタックとは、要素を格納する空の配列のことです。</p>"
+            }
         ]
     },
     {
         "level_number": 1,
-        "title": "Manipulación Básica de Arrays",
+        "title": "配列の基本操作",
         "pattern": "stack.push(cherry);",
         "hints": [
-                "Un stack es como un contenedor donde puedes guardar cosas.",
-                "Los arrays en JavaScript se simbolizan con <code>[]</code>."
-                ],
+            "スタックは物を保管するコンテナのようなものです。",
+            "JavaScriptの配列は <code>[]</code> で表します。"
+        ],
         "steps": [
             {
                 "step_number": 0,
-                "title": "Muy bien! haz creado tu primer array",
-                "content": "Ahora veamos una breve explicacion de que sucedió...."
+                "title": "素晴らしい！",
+                "content": "<strong>最初の配列を作成しました</strong><p>次に何が起こったのか簡単に説明します....</p>"
             },
             {
                 "step_number": 1,
-                "title": "¿Qué es un stack? (Parte 1)",
-                "content": "Imagina que tienes muchas pelotas de tenis y necesitas guardarlas para que no se pierdan. Las colocas en un recipiente, y problema resuelto. Ese recipiente es un <b>array</b>, simbolizado por <code>[]</code>. Aquí en la fábrica, lo llamamos <i>stack</i>."
+                "title": "スタックとは何ですか？（パート1）",
+                "content": "テニスボールがたくさんあり、それをなくさないように収納する必要があると想像してください。それらを容器に入れれば問題解決です。その容器が<b>配列</b>で、<code>[]</code> で表します。工場ではこれを<i>スタック</i>と呼んでいます。"
             },
             {
                 "step_number": 2,
-                "title": "¿Qué es un stack? (Parte 2)",
-                "content": "Una vez tienes el recipiente, necesitas poder agregar, quitar y organizar los elementos dentro de él. En JavaScript, hacemos lo mismo con un array. <br><br> Usa el comando <code>stack.push('cherry');</code> para agregar una cereza al stack."
+                "title": "スタックとは何ですか？（パート2）",
+                "content": "容器を手に入れたら、その中に要素を追加したり、削除したり、整理したりする必要があります。JavaScriptでは、配列で同じことを行います。<br><br> コマンド <code>stack.push('cherry');</code> を使用して、スタックにチェリーを追加してください。"
             },
             {
                 "step_number": 3,
-                "title": "Eliminando un elemento",
-                "content": "Elimina el último elemento del array usando pop."
+                "title": "要素の削除",
+                "content": "popを使って配列の最後の要素を削除します。"
             },
             {
                 "step_number": 4,
-                "title": "Accediendo a un elemento",
-                "content": "Accede al segundo elemento del array usando índices."
+                "title": "要素へのアクセス",
+                "content": "インデックスを使用して配列の2番目の要素にアクセスします。"
             }
         ]
     }
