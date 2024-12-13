@@ -76,10 +76,6 @@ fetchData('objetosJuego.json')
     console.error('No se pudo cargar los objetos del juego:', error);
   });
 
-
-
-
-
 // Mostrar la pantalla de inicio al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
   loadFrutas(); // Función para cargar las frutas
@@ -199,7 +195,6 @@ manualNextButton.addEventListener('click', () => {
   } else {
     manual.classList.add('oculto')
     actualizarExpresion('normal')
-    mostrarMensaje("Completa el nivel actual para desbloquear el siguiente.");
     return;
   }
 
@@ -218,16 +213,12 @@ manualPrevButton.addEventListener('click', () => {
     levelCount--;
     stepCount = levels[levelCount].steps.length - 1;
   } else {
-    mostrarMensaje("Ya estás en el primer nivel.");
     return;
   }
 
   actualizarManual(stepCount);
 });
-// Función para mostrar un mensaje en la interfaz
-function mostrarMensaje(mensaje) {
-  console.log(mensaje); // Por ahora se utiliza console.log, pero se podría reemplazar por lógica de interfaz
-}
+
 // Función para actualizar el título del manual
 function nuevoTituloManual(mensaje){  
   manualTitle.innerHTML = mensaje;
@@ -257,15 +248,29 @@ startButton.addEventListener('click', () => {
     // Input válido para el paso actual
     // mostrarMensaje(listadoMensajes[levelCount][claveNivel][indexCount].mensajesCorrectos);
    console.log('patron correcto');
+   console.log(userInput);
+   
     levelCount++;
     stepCount = 0
-    actualizarManual(stepCount);
+    actualizarManual(stepCount); 
+    stackContainer1.classList.remove('oculto')
+    stackContainerName1.classList.remove('oculto')
+    actualizarExpresion('happy')
+    setTimeout(() => {
+      actualizarExpresion('speaking')
     manual.classList.remove('oculto');
     nuevoNivel(levelCount);
+    inputPlayer.value = ''
+    }, 1500);
     } else{
+      actualizarExpresion('sad')
+      setTimeout(() => {
+        actualizarExpresion('normal')
+      }, 1500);
       console.log('maaaaal');
     }
-    
+    userInput = undefined
+   console.log(userInput);
 });
 manualButton.addEventListener('click', () =>{
   manual.classList.remove('oculto')
