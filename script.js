@@ -227,53 +227,84 @@ function nuevoTituloManual(mensaje){
 function nuevoContenidoManual(mensaje){
   manualContent.innerHTML = mensaje;
 }
-
+let userInput
 // Función para verificar el contenido del textarea cuando se haga click en START
 startButton.addEventListener('click', () => {
   if (!inputPlayer) {
     console.error('Campo de entrada no encontrado.');
     return;
-  }  
-  let userInput = inputPlayer.value.trim();
-  userInput = inputPlayer.value.trimEnd();
-  // Normalizar el input del usuario: quitamos espacios múltiples y reemplazamos con un único espacio
-  userInput = userInput.replace(/\s+/g, ' ');
+  }
+
+  userInput = inputPlayer.value.trim().replace(/\s+/g, ' ');
+
   // Obtener el patrón válido actual desde el JSON de patrones
-  let levelPattern = levels[levelCount].pattern;  
-  levelPattern = RegExp(levelPattern)
-  console.log(levelPattern);
-  
+  let levelPattern = levels[levelCount]?.pattern;
+  if (!levelPattern) {
+    console.error('Patrón no encontrado para el nivel actual.');
+    return;
+  }
+
+  // Crear Regex dinámico
+  try {
+    levelPattern = new RegExp(levelPattern);
+  } catch (error) {
+    console.error('Error al crear el patrón Regex:', error);
+    return;
+  }
+
+  console.log('Validando con patrón:', levelPattern);
+
   // Verificar si el contenido del textarea cumple con el patrón
   if (levelPattern.test(userInput)) {
-    // Input válido para el paso actual
-    // mostrarMensaje(listadoMensajes[levelCount][claveNivel][indexCount].mensajesCorrectos);
-   console.log('patron correcto');
-   console.log(userInput);
-   
-    levelCount++;
-    stepCount = 0
-    actualizarManual(stepCount); 
-    stackContainer1.classList.remove('oculto')
-    stackContainerName1.classList.remove('oculto')
-    actualizarExpresion('happy')
-    setTimeout(() => {
-      actualizarExpresion('speaking')
-    manual.classList.remove('oculto');
-    nuevoNivel(levelCount);
-    inputPlayer.value = ''
-    }, 1500);
-    } else{
-      actualizarExpresion('sad')
-      setTimeout(() => {
-        actualizarExpresion('normal')
-      }, 1500);
-      console.log('maaaaal');
+    actualizarExpresion('happy');
+    switch (levelCount) {
+      case 0:
+        stackContainer1.classList.remove('oculto');
+        stackContainerName1.classList.remove('oculto');
+        break;
+      case 1:
+        let apple = newBox('Frutas', 0);
+        stackContainer1.appendChild(apple);
+        break;
+      case 2:
+        stackContainer1.lastChild.remove()
+        break;
+      case 3:
+        console.log('nivel' + levelCount + ' completado');
+        let banana = newBox('Frutas', 2);
+        stackContainer1.appendChild(banana);
+        
+        // comandos para el nivel 4
+        break;
     }
-    userInput = undefined
-   console.log(userInput);
+    setTimeout(() => {
+      actualizarExpresion('speaking');
+      manual.classList.remove('oculto');
+      nuevoNivel(levelCount);
+      inputPlayer.value = '';
+    }, 1500);
+  } else {
+    actualizarExpresion('sad');
+    setTimeout(() => {
+      actualizarExpresion('normal');
+    }, 1500);
+    console.log('maaaaal');
+    return
+  }
+
+  levelCount++;
+  stepCount = 0;
+  actualizarManual(stepCount);
 });
+
 manualButton.addEventListener('click', () =>{
   manual.classList.remove('oculto')
   actualizarExpresion('speaking')
 })
 
+function newBox(tipo, number) {
+  const box = document.createElement('div')
+  box.classList.add('elemento')
+  box.textContent = objetosJuego[tipo][number].emoji
+  return box
+}

@@ -33,7 +33,7 @@
     {
         "level_number": 1,
         "title": "配列の基本操作",
-        "pattern": "stack.push(cherry);",
+        "pattern": "^stack\\.push\\(apple\\);$",
         "hints": [
             "スタックは物を保管するコンテナのようなものです。",
             "JavaScriptの配列は <code>[]</code> で表します。"
@@ -52,18 +52,61 @@
             {
                 "step_number": 2,
                 "title": "スタックとは何ですか？（パート2）",
-                "content": "容器を手に入れたら、その中に要素を追加したり、削除したり、整理したりする必要があります。JavaScriptでは、配列で同じことを行います。<br><br> コマンド <code>stack.push('cherry');</code> を使用して、スタックにチェリーを追加してください。"
+                "content": "容器を手に入れたら、その中に要素を追加したり、削除したり、整理したりする必要があります。JavaScriptでは、配列で同じことを行います。<p>コマンド <strong><code>stack.push(apple);</code></strong> を使用して、スタックにリンゴを追加してください。</p>"
+            }
+        ]
+    },
+    {
+        "level_number": 2,
+        "title": "配列から要素を削除する",
+        "pattern": "^stack\\.pop\\(\\);$",
+        "hints": [
+            "スタックは物を保管するコンテナのようなものです。",
+            "JavaScriptの <code>pop()</code> メソッドは配列の最後の要素を削除します。"
+        ],
+        "steps": [
+            {
+                "step_number": 0,
+                "title": "素晴らしい！",
+                "content": "<strong>スタックにリンゴを追加しました！</strong><p>次に、配列から要素を削除する方法を学びましょう。</p>"
             },
             {
-                "step_number": 3,
-                "title": "要素の削除",
-                "content": "popを使って配列の最後の要素を削除します。"
+                "step_number": 1,
+                "title": "要素を削除する方法",
+                "content": "スタックから要素を削除するには、<code>pop()</code> メソッドを使用します。このメソッドは配列の最後の要素を削除し、それを返します。"
             },
             {
-                "step_number": 4,
-                "title": "要素へのアクセス",
-                "content": "インデックスを使用して配列の2番目の要素にアクセスします。"
+                "step_number": 2,
+                "title": "スタックを操作してみよう",
+                "content": "スタックに追加したリンゴを削除してみましょう。以下のコマンドを使用してください：<p><strong><code>stack.pop();</code></strong></p>"
+            }
+        ]
+    },
+    {
+        "level_number": 3,
+        "title": "新しい要素を追加する",
+        "pattern": "^stack\\.push\\(banana\\);$",
+        "hints": [
+            "前のレベルで学んだ<code>push()</code> メソッドを使用してください。",
+            "追加する要素の名前はバナナです。"
+        ],
+        "steps": [
+            {
+                "step_number": 0,
+                "title": "よくできました！",
+                "content": "素晴らしい！リンゴをスタックから削除することができました。次は、新しい要素をスタックに追加してみましょう。"
+            },
+            {
+                "step_number": 1,
+                "title": "新しいタスク",
+                "content": "スタックにバナナを追加してみましょう。以下のコマンドを使用してください：<p><strong><code>stack.push(banana);</code></strong></p>"
+            },
+            {
+                "step_number": 2,
+                "title": "スタックの内容を確認する",
+                "content": "バナナを追加したら、スタックの内容を確認してみましょう。素晴らしい仕事です！"
             }
         ]
     }
 ]
+

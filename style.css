@@ -59,13 +59,18 @@ main{
   justify-items: center;
   border-radius: 12px;
 }
-.elemento{
+.elemento {
   background-color: #1b1b1b9c;
   border: 3px solid rgb(156, 98, 32);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  /* aspect-ratio: 1; Hace que las cajas sean cuadradas */
+  font-size: 2rem; /* Tamaño adecuado para emojis */
+  width: 100%; /* Se adapta al ancho del contenedor */
+  height: 100%; /* Se adapta al alto del contenedor */
+  box-sizing: border-box; /* Asegura que el padding y el border no desborden el tamaño */
 }
 .name{
   font-size: 2.6rem;

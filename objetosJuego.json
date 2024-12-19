@@ -1,94 +1,117 @@
 {
   "Frutas": [
     {
+      "number": 0,
       "name": "apple",
       "emoji": "🍎"
     },
     {
+      "number": 1,
       "name": "orange",
       "emoji": "🍊"
     },
     {
+      "number": 2,
       "name": "banana",
       "emoji": "🍌"
     },
     {
+      "number": 3,
       "name": "strawberry",
       "emoji": "🍓"
     },
     {
+      "number": 4,
       "name": "grape",
       "emoji": "🍇"
     },
     {
+      "number": 5,
       "name": "cherry",
       "emoji": "🍒"
     },
     {
+      "number": 6,
       "name": "kiwi",
       "emoji": "🥝"
     },
     {
+      "number": 7,
       "name": "pineapple",
       "emoji": "🍍"
     },
     {
+      "number": 8,
       "name": "peach",
       "emoji": "🍑"
     },
     {
+      "number": 9,
       "name": "lemon",
       "emoji": "🍋"
     },
     {
+      "number": 10,
       "name": "mango",
       "emoji": "🥭"
     },
     {
+      "number": 11,
       "name": "blueberry",
       "emoji": "🫐"
     },
     {
+      
+      "number": 12,
       "name": "pear",
       "emoji": "🍐"
     },
     {
+      "number": 13,
       "name": "coconut",
       "emoji": "🥥"
     },
     {
+      "number": 14,
       "name": "melon",
       "emoji": "🍈"
     },
     {
+      "number": 15,
       "name": "watermelon",
       "emoji": "🍉"
     }
   ],
   "otherObjects": [
     {
+      "number": 16,
       "name": "phone",
       "emoji": "📱"
     },
     {
+      "number": 17,
       "name": "pc",
       "emoji": "💻"
     },
     {
+      "number": 18,
       "name": "cat",
       "emoji": "🐱"
     },
     {
+      "number": 19,
       "name": "clock",
       "emoji": "⏰"
     },
     {
+      "number": 20,
       "name": "keys",
       "emoji": "🔑"
     },
     {
+      "number": 21,
       "name": "soccer ball",
-      "emoji": "⚽️"
+      "emoji": "⚽️‘"
     }
   ]
 }
