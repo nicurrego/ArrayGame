@@ -308,3 +308,8 @@ function newBox(tipo, number) {
   box.textContent = objetosJuego[tipo][number].emoji
   return box
 }
+class Fruit {
+  constructor(name) {
+    this.name = name
+  }
+}
