@@ -15,6 +15,8 @@ const stepSpan = document.querySelector('.stepSpan span');
 const manualNextButton = document.querySelector('#manualNextButton');
 const hintButton = document.querySelector('.hintButton')
 
+const speechBubble = document.querySelector('.speechBubble')
+
 
 const inputPlayer = document.querySelector('#inputPlayer');
 const startButton = document.querySelector('#start');
@@ -228,6 +230,7 @@ function nuevoContenidoManual(mensaje){
   manualContent.innerHTML = mensaje;
 }
 let userInput
+let userAtemps = 0
 // Función para verificar el contenido del textarea cuando se haga click en START
 startButton.addEventListener('click', () => {
   if (!inputPlayer) {
@@ -252,10 +255,11 @@ startButton.addEventListener('click', () => {
     return;
   }
 
-  console.log('Validando con patrón:', levelPattern);
-
   // Verificar si el contenido del textarea cumple con el patrón
   if (levelPattern.test(userInput)) {
+
+    userAtemps = 0
+
     actualizarExpresion('happy');
     switch (levelCount) {
       case 0:
@@ -285,10 +289,19 @@ startButton.addEventListener('click', () => {
     }, 1500);
   } else {
     actualizarExpresion('sad');
+
+    userAtemps++
+    if (userAtemps == 3) {
+      actualizarExpresion('speaking')
+      speechBubble.classList.remove('oculto')
+    } else if(userAtemps === 5){
+      actualizarExpresion('speaking')
+      speechBubble.classList.remove('oculto')
+    }
+
     setTimeout(() => {
       actualizarExpresion('normal');
     }, 1500);
-    console.log('maaaaal');
     return
   }
 
@@ -296,6 +309,15 @@ startButton.addEventListener('click', () => {
   stepCount = 0;
   actualizarManual(stepCount);
 });
+// Escuchar el evento "keydown" en el inputPlayer
+inputPlayer.addEventListener('keydown', (event) => {
+  // Detectar si la tecla presionada es "Enter"
+  if (event.key === 'Enter') {
+    event.preventDefault(); // Prevenir el comportamiento por defecto de Enter (como un salto de línea)
+    startButton.click(); // Simular un clic en el botón de start
+  }
+});
+
 
 manualButton.addEventListener('click', () =>{
   manual.classList.remove('oculto')

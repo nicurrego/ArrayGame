@@ -84,11 +84,10 @@
     },
     {
       "level_number": 3,
-      "title": "新しい要素を追加しよう",
-      "pattern": "^stack\\.push\\(banana\\);$",
+      "title": "tutorial superado",
+      "pattern": "^let\\s+stack2\\s*=\\s*\\[\\];$",
       "hints": [
-        "前のステージで学んだ <code>push()</code> を使います。",
-        "今回追加するのはバナナ (banana) です。"
+        "let stack = [] -> aqui el nombre del stack es 'stack'"
       ],
       "steps": [
         {
@@ -98,13 +97,13 @@
         },
         {
           "step_number": 1,
-          "title": "次のミッション",
-          "content": "スタックにバナナを追加してください。下のコマンドを入力してみましょう：<p><strong><code>stack.push(banana);</code></strong></p>"
+          "title": "Prepara tu zona de trabajo",
+          "content": "En esta fabrica siempre trabajamos con 2 stack par poder manipular mejor los objetos"
         },
         {
           "step_number": 2,
-          "title": "スタックを確認しよう",
-          "content": "バナナを入れたら、スタックがどうなったか見てみましょう。これでまた一歩レベルアップですね！"
+          "title": "Empecemos",
+          "content": "crea otro stack y llamalo <p><strong><code>stack2;</code></strong></p> "
         }
       ]
     }
