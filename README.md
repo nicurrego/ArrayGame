@@ -1,6 +1,6 @@
 # Array Cat
 
-![Array Cat Logo](./imagenes/Cat happy.png)
+![Array Cat Logo](./imagenes/Cat_happy.png)
 
 ## 🐾 **Overview**
 Array Cat is an interactive educational game designed to teach players how to understand and manipulate arrays in programming. The protagonist, a playful cat, reacts emotionally based on the player's success in solving array-related challenges. The game combines fun gameplay with learning opportunities, making it an engaging way to practice coding concepts. While it currently focuses on JavaScript, the game aims to expand support for multiple programming languages in the future.
