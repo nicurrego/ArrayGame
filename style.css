@@ -199,7 +199,7 @@ aside{
     line-height: 1.5;
     font-family: 'Arial', sans-serif;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-direction: column;
     z-index: 10;
 }

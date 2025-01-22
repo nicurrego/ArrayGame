@@ -16,6 +16,8 @@ const manualNextButton = document.querySelector('#manualNextButton');
 const hintButton = document.querySelector('.hintButton')
 
 const speechBubble = document.querySelector('.speechBubble')
+const speechBubbleCloseButton = document.querySelector('#speechBubbleCloseButton')
+const speechBubbleText = document.querySelector('.speechBubbleText')
 
 
 const inputPlayer = document.querySelector('#inputPlayer');
@@ -175,7 +177,7 @@ let actualLevel;
 let actualStep;
 let levelCount = 0;
 let stepCount = 0;
-let hintCount = 0
+let hintCount = 0;
 let reachedLevel = 0; // Nivel máximo que el usuario ha logrado alcanzar
 
 function actualizarManual(stepCount) {
@@ -206,8 +208,11 @@ manualCloseButton.addEventListener('click', () => {
   manual.classList.add('oculto')
   actualizarExpresion('normal')
 })
-
-
+//Para cerrar el speechBubble
+speechBubbleCloseButton.addEventListener('click', () => {
+  speechBubble.classList.add('oculto')
+  actualizarExpresion('normal')
+})
 manualPrevButton.addEventListener('click', () => {
   if (stepCount > 0) {
     stepCount--;
@@ -229,6 +234,7 @@ function nuevoTituloManual(mensaje){
 function nuevoContenidoManual(mensaje){
   manualContent.innerHTML = mensaje;
 }
+
 let userInput
 let userAtemps = 0
 // Función para verificar el contenido del textarea cuando se haga click en START
@@ -288,21 +294,38 @@ startButton.addEventListener('click', () => {
       inputPlayer.value = '';
     }, 1500);
   } else {
+    console.log(userAtemps);
+    
     actualizarExpresion('sad');
 
     userAtemps++
-    if (userAtemps == 3) {
-      actualizarExpresion('speaking')
-      speechBubble.classList.remove('oculto')
-    } else if(userAtemps === 5){
-      actualizarExpresion('speaking')
-      speechBubble.classList.remove('oculto')
-    }
-
-    setTimeout(() => {
-      actualizarExpresion('normal');
-    }, 1500);
-    return
+    switch (userAtemps) {
+      case 3:
+        let hint = levels[reachedLevel].hints[0]
+          actualizarExpresion('speaking')
+          speechBubble.classList.remove('oculto')
+          speechBubbleText.innerHTML = hint
+        break;
+      case 5:
+        hint = levels[reachedLevel].hints[1]
+          actualizarExpresion('speaking')
+          speechBubble.classList.remove('oculto')
+          speechBubbleText.innerHTML = hint
+        break;
+      case 10:
+         hint = levels[reachedLevel].hints[2]
+          actualizarExpresion('speaking')
+          speechBubble.classList.remove('oculto')
+          speechBubbleText.innerHTML = hint
+        break;
+    
+      default:
+        setTimeout(() => {
+          actualizarExpresion('normal');
+        }, 1500);
+        break;
+      }
+      return
   }
 
   levelCount++;
