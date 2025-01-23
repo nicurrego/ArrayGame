@@ -242,6 +242,7 @@ let userInput
 let userAtemps = 0
 // Función para verificar el contenido del textarea cuando se haga click en START
 startButton.addEventListener('click', () => {
+  
   if (!inputPlayer) {
     console.error('Campo de entrada no encontrado.');
     return;
@@ -251,6 +252,7 @@ startButton.addEventListener('click', () => {
 
   // Obtener el patrón válido actual desde el JSON de patrones
   let levelPattern = levels[levelCount]?.pattern;
+  console.log(levelPattern);
   if (!levelPattern) {
     console.error('Patrón no encontrado para el nivel actual.');
     return;
@@ -284,10 +286,13 @@ startButton.addEventListener('click', () => {
         break;
       case 3:
         console.log('nivel' + levelCount + ' completado');
-        let banana = newBox('Frutas', 2);
-        stackContainer1.appendChild(banana);
-        
-        // comandos para el nivel 4
+        stackContainer2.classList.remove('oculto')
+        stackContainerName2.classList.remove('oculto')
+        break;
+      case 4:
+        console.log('nivel 4 alcanzado!')
+        let kiwi = newBox('Frutas', 6)
+        stackContainer2.appendChild(kiwi)
         break;
     }
     setTimeout(() => {
@@ -304,25 +309,26 @@ startButton.addEventListener('click', () => {
     userAtemps++
     switch (userAtemps) {
       case 3:
-        let hint1 = levels[reachedLevel].hints[0]
+        let hint1 = levels[levelCount].hints[0]
           actualizarExpresion('speaking')
           speechBubble.classList.remove('oculto')
           speechBubbleText.innerHTML = hint1
           stopTalking();
         break;
       case 5:
-        let hint2 = levels[reachedLevel].hints[1]
+        let hint2 = levels[levelCount].hints[1]
           actualizarExpresion('speaking')
           speechBubble.classList.remove('oculto')
           speechBubbleText.innerHTML = hint2
           stopTalking()
         break;
       case 10:
-         let hint3 = levels[reachedLevel].hints[2]
+         let hint3 = levels[levelCount].hints[2]
           actualizarExpresion('speaking')
           speechBubble.classList.remove('oculto')
           speechBubbleText.innerHTML = hint3
           stopTalking();
+          userAtemps = 0;
         break;
     
       default:
@@ -351,7 +357,6 @@ inputPlayer.addEventListener('keydown', (event) => {
     startButton.click(); // Simular un clic en el botón de start
   }
 });
-
 
 manualButton.addEventListener('click', () =>{
   manual.classList.remove('oculto')
