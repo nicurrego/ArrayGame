@@ -203,6 +203,88 @@ aside{
     flex-direction: column;
     z-index: 10;
 }
+.map {
+  background: rgba(255, 244, 230, 0.9);
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 500px;
+    height: 400px;
+    text-align: center;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 50%;
+    left: 43%;
+    transform: translate(-50%, -50%);
+    color: #333;
+    line-height: 1.5;
+    font-family: 'Arial', sans-serif;
+    display: grid;
+    grid-template-rows: 10fr 1fr;
+    flex-direction: column;
+    z-index: 20;
+}
+.level-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Cuatro columnas */
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  justify-items: center;
+  align-items: center;
+}
+
+.level-grid .level:nth-child(9),
+.level-grid .level:nth-child(10) {
+  grid-column: span 2; /* Centra los últimos dos niveles */
+}
+
+.level {
+  min-width: 90px;
+  min-height: 90px;
+  background-color: #ddd; /* Fondo opaco para niveles bloqueados */
+  color: black;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #aaa;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  opacity: 0.5; /* Por defecto bloqueado */
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.level.unlocked {
+  background-color: #4caf50; /* Color nítido para niveles desbloqueados */
+  color: white;
+  opacity: 1;
+}
+
+.level:hover.unlocked {
+  background-color: #3e8e41; /* Color más oscuro al pasar el mouse */
+}
+
+.tooltip {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.level:hover .tooltip {
+  opacity: 1;
+}
+
 .oculto{
   display: none;
 }

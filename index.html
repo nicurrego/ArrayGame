@@ -14,7 +14,7 @@
 
   <div class="manual oculto">
     <div class="manual_top">
-      <div class="level">レベル: <span>0</span></div>
+      <div class="levelSpan">レベル: <span>0</span></div>
       <div class="manualTitle"><p></p></div>
      <div class="stepSpan">ページ: <span>0</span></div>
     </div>
@@ -25,12 +25,31 @@
       <button class="btn-61" id="manualNextButton"><span>次 →</span></button>
     </section>
   </div>
-
+  
   <div class="speechBubble oculto">
     <div class="speechBubbleText"></div>
     <button class="btn-61" id="speechBubbleCloseButton"><span>- 閉じる -</span></button>
   </div>
-     
+  
+
+  <div class="map oculto">
+    <div class="level-grid">
+      <!-- Niveles -->
+      <div class="level" data-level="1">1</div>
+      <div class="level" data-level="2">2</div>
+      <div class="level" data-level="3">3</div>
+      <div class="level" data-level="4">4</div>
+      <div class="level" data-level="5">5</div>
+      <div class="level" data-level="6">6</div>
+      <div class="level" data-level="7">7</div>
+      <div class="level" data-level="8">8</div>
+      <div class="level" data-level="9">9</div>
+      <div class="level" data-level="10">10</div>
+    </div>
+    <button class="btn-61" id="mapCloseButton"><span>- 閉じる -</span></button>
+  </div>
+    
+
   <section class="game-screen">
     <main>
       <p class="name name1 oculto">stack-1</p>
@@ -55,7 +74,7 @@
       </div>
       <div class="buttons">
         <button class="btn-61 manualButton"><span>- マニュアル -</span></button>
-        <button class="btn-61 hintButton"><span>- ヒント -</span></button>
+        <button class="btn-61 mapButton"><span>-　マップ -</span></button>
       </div>
     </aside>
   </section>

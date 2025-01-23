@@ -9,11 +9,14 @@ const manualTitle = document.querySelector('.manualTitle');
 const manualContent = document.querySelector('.manualContent');
 const manualBottom = document.querySelector('.manual_bottom');
 const manualPrevButton = document.querySelector('#manualPrevButton');
-const levelSpan = document.querySelector('.level span');
+const levelSpan = document.querySelector('.levelSpan span');
 const manualCloseButton = document.querySelector('#manualCloseButton')
 const stepSpan = document.querySelector('.stepSpan span');
 const manualNextButton = document.querySelector('#manualNextButton');
-const hintButton = document.querySelector('.hintButton')
+
+const map = document.querySelector('.map')
+const mapCloseButton = document.querySelector('#mapCloseButton')
+const mapButton = document.querySelector('.mapButton')
 
 const speechBubble = document.querySelector('.speechBubble')
 const speechBubbleCloseButton = document.querySelector('#speechBubbleCloseButton')
@@ -354,6 +357,67 @@ manualButton.addEventListener('click', () =>{
   manual.classList.remove('oculto')
   actualizarExpresion('speaking')
 })
+mapButton.addEventListener('click', () =>{
+  map.classList.remove('oculto')
+  actualizarExpresion('mad')
+})
+mapCloseButton.addEventListener('click', () =>{
+  map.classList.add('oculto')
+  actualizarExpresion('normal')
+})
+// Inicializar los niveles del mapa
+function initializeLevelMenu() {
+  const levels = document.querySelectorAll('.level');
+
+  levels.forEach((level, index) => {
+    const levelNumber = index + 1;
+
+    // Desbloquear niveles según el progreso
+    if (levelNumber <= reachedLevel) {
+      level.classList.add('unlocked');
+      level.classList.remove('locked');
+
+      // Agregar tooltip con el comando enseñado
+      const tooltip = document.createElement('div');
+      tooltip.className = 'tooltip';
+      tooltip.textContent = getLevelCommand(levelNumber);
+      level.appendChild(tooltip);
+
+      // Manejar clic en niveles desbloqueados
+      level.addEventListener('click', () => {
+        changeLevel(levelNumber - 1);
+      });
+    } else {
+      level.classList.add('locked');
+      level.classList.remove('unlocked');
+    }
+  });
+}
+
+// Obtener el comando enseñado en un nivel
+function getLevelCommand(levelNumber) {
+  const commands = {
+    1: "frutas.push('manzana');",
+    2: "frutas.pop();",
+    3: "frutas.unshift('pera');",
+    4: "frutas.shift();",
+    5: "frutas[2] = 'banana';",
+    6: "let fruta = frutas[1];",
+    7: "frutas.length;",
+    8: "frutas.slice(1,3);",
+    9: "frutas.map(f => f.toUpperCase());",
+    10: "frutas.filter(f => f !== 'manzana');"
+  };
+  return commands[levelNumber] || "Comando no disponible.";
+}
+
+// Cambiar de nivel
+function changeLevel(levelIndex) {
+  levelCount = levelIndex;
+  stepCount = 0;
+  actualizarManual(stepCount); // Actualizar el manual del nivel
+  map.classList.add('oculto'); // Cerrar el menú del mapa
+}
 
 function newBox(tipo, number) {
   const box = document.createElement('div')
