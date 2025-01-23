@@ -265,7 +265,7 @@ startButton.addEventListener('click', () => {
   if (levelPattern.test(userInput)) {
 
     userAtemps = 0
-
+    speechBubble.classList.add('oculto')
     actualizarExpresion('happy');
     switch (levelCount) {
       case 0:
@@ -301,22 +301,25 @@ startButton.addEventListener('click', () => {
     userAtemps++
     switch (userAtemps) {
       case 3:
-        let hint = levels[reachedLevel].hints[0]
+        let hint1 = levels[reachedLevel].hints[0]
           actualizarExpresion('speaking')
           speechBubble.classList.remove('oculto')
-          speechBubbleText.innerHTML = hint
+          speechBubbleText.innerHTML = hint1
+          stopTalking();
         break;
       case 5:
-        hint = levels[reachedLevel].hints[1]
+        let hint2 = levels[reachedLevel].hints[1]
           actualizarExpresion('speaking')
           speechBubble.classList.remove('oculto')
-          speechBubbleText.innerHTML = hint
+          speechBubbleText.innerHTML = hint2
+          stopTalking()
         break;
       case 10:
-         hint = levels[reachedLevel].hints[2]
+         let hint3 = levels[reachedLevel].hints[2]
           actualizarExpresion('speaking')
           speechBubble.classList.remove('oculto')
-          speechBubbleText.innerHTML = hint
+          speechBubbleText.innerHTML = hint3
+          stopTalking();
         break;
     
       default:
@@ -332,6 +335,11 @@ startButton.addEventListener('click', () => {
   stepCount = 0;
   actualizarManual(stepCount);
 });
+function stopTalking() {
+  setTimeout(() => {
+  actualizarExpresion('normal')
+  }, 1500);
+}
 // Escuchar el evento "keydown" en el inputPlayer
 inputPlayer.addEventListener('keydown', (event) => {
   // Detectar si la tecla presionada es "Enter"

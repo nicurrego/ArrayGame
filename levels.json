@@ -5,7 +5,8 @@
       "pattern": "^let\\s+stack\\s*=\\s*\\[\\];$",
       "hints": [
         "変数を宣言するときは「let」を使いましょう。",
-        "空の配列は <code>[]</code> で表します。"
+        "空の配列は <code>[]</code> で表します。",
+        "<code> try: let stack = []; </code>"
       ],
       "steps": [
         {
