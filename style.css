@@ -39,7 +39,7 @@ main{
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr 5fr 5fr;
   grid-template-areas: 
-  "name frutas name2"
+  "name1 frutas name2"
   "stack1 frutas stack2"
   ". embudo .";
   height: 95%;
@@ -78,6 +78,12 @@ main{
   color: aquamarine;
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
+}
+.name1{
+  grid-area: name1;
+}
+.name2{
+  grid-area: name2;
 }
 .stack-1{
   grid-area: stack1;

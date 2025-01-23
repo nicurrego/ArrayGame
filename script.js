@@ -252,12 +252,10 @@ startButton.addEventListener('click', () => {
 
   // Obtener el patrón válido actual desde el JSON de patrones
   let levelPattern = levels[levelCount]?.pattern;
-  console.log(levelPattern);
   if (!levelPattern) {
     console.error('Patrón no encontrado para el nivel actual.');
     return;
   }
-
   // Crear Regex dinámico
   try {
     levelPattern = new RegExp(levelPattern);
@@ -265,11 +263,11 @@ startButton.addEventListener('click', () => {
     console.error('Error al crear el patrón Regex:', error);
     return;
   }
-
   // Verificar si el contenido del textarea cumple con el patrón
   if (levelPattern.test(userInput)) {
 
     userAtemps = 0
+    reachedLevel++
     speechBubble.classList.add('oculto')
     actualizarExpresion('happy');
     switch (levelCount) {
@@ -285,12 +283,10 @@ startButton.addEventListener('click', () => {
         stackContainer1.lastChild.remove()
         break;
       case 3:
-        console.log('nivel' + levelCount + ' completado');
         stackContainer2.classList.remove('oculto')
         stackContainerName2.classList.remove('oculto')
         break;
       case 4:
-        console.log('nivel 4 alcanzado!')
         let kiwi = newBox('Frutas', 6)
         stackContainer2.appendChild(kiwi)
         break;
@@ -402,11 +398,11 @@ function initializeLevelMenu() {
 // Obtener el comando enseñado en un nivel
 function getLevelCommand(levelNumber) {
   const commands = {
-    1: "frutas.push('manzana');",
-    2: "frutas.pop();",
-    3: "frutas.unshift('pera');",
-    4: "frutas.shift();",
-    5: "frutas[2] = 'banana';",
+    1: "let stack = [];",
+    2: "stack.push(apple);",
+    3: "stack.pop();",
+    4: "let stack2 = [];",
+    5: "stack2.push(kiwi);",
     6: "let fruta = frutas[1];",
     7: "frutas.length;",
     8: "frutas.slice(1,3);",

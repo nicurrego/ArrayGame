@@ -4,30 +4,30 @@
     "title": "配列を知ろう",
     "pattern": "^let\\s+stack\\s*=\\s*\\[\\];$",
     "hints": [
-      "ヒント 1: 配列を作成するには、キーワード 'let' を使用します。",
-      "ヒント 2: 空の配列は <code>[]</code> で表します。",
-      "ヒント 3: <code>let stack = [];</code> と入力してください。"
+      "ヒント 1: 配列を作るには、キーワード 'let' を使えばOK！",
+      "ヒント 2: 空の配列は <code>[]</code> で表せるよ！",
+      "ヒント 3: <code>let stack = [];</code> って書いてみて！"
     ],
     "steps": [
       {
         "step_number": 0,
         "title": "Array Catへようこそ！",
-        "content": "ここでは、配列の基本を楽しく学べます。配列の中に色々なモノを整理して入れられるイメージです。<br>さあ、アイテムを上手に扱える達人を目指しましょう！<p>それでは始めます！</p>"
+        "content": "ここでは、配列の基本を楽しく学べるよ。配列っていうのは、いろんなものをキレイにしまえる便利な箱みたいなもの！<br>さあ、配列の達人になろう！<p>準備はいい？レッツゴー！</p>"
       },
       {
         "step_number": 1,
         "title": "このマニュアルの使い方",
-        "content": "プレイ中に迷ったり、ヒントがほしい時はいつでもこのマニュアルをチェックしてください。やり方やコツを確認して、次のステップに進みましょう。困ったときの心強い味方です！"
+        "content": "ゲーム中に迷ったら、このマニュアルを見てみてね！ヒントややり方がわかるから、次のステップに進む手助けになるよ！困ったときの味方だよ！"
       },
       {
         "step_number": 2,
         "title": "入力エリア",
-        "content": "ゲームにコマンドを送るには、<strong><span style='color: blue;'>入力エリア</span></strong> を使います。ここに命令を入力してシステムとやりとりしてください。"
+        "content": "ゲームでコマンドを送るには、<strong><span style='color: blue;'>入力エリア</span></strong> を使ってね。ここに命令を書いてシステムに教えよう！"
       },
       {
         "step_number": 3,
         "title": "スタックの作成",
-        "content": "フルーツを入れる場所が必要なので、まずは空の配列を作ってみましょう。以下のコマンドを入力してください：<p><strong><code>let stack = [];</code></strong></p><p>「スタック (stack)」とは、いろいろな要素をしまっておける箱のようなものです。</p>"
+        "content": "フルーツを入れる場所を作るよ。まずは空っぽの配列を作ってみよう！以下のコマンドを書いてみて：<p><strong><code>let stack = [];</code></strong></p><p>「スタック」っていうのは、いろんなアイテムを整理できる箱のことだよ！</p>"
       }
     ]
   },
@@ -36,25 +36,25 @@
     "title": "配列の基本操作",
     "pattern": "^stack\\.push\\(apple\\);$",
     "hints": [
-      "ヒント 1: 配列に要素を追加するには、<code>push</code> を使います。",
-      "ヒント 2: push は括弧内に追加する要素を指定します。",
-      "ヒント 3: <code>stack.push(apple);</code> と入力してください。"
+      "ヒント 1: 配列にアイテムを追加したいときは、<code>push</code> を使ってみよう！",
+      "ヒント 2: push は、追加したいアイテムを括弧の中に書くだけ！",
+      "ヒント 3: <code>stack.push(apple);</code> って試してみて！"
     ],
     "steps": [
       {
         "step_number": 0,
-        "title": "いいですね！",
-        "content": "<strong>最初の配列を作成しました！</strong><p>次は何が起きたのか、そしてどうやってスタックにアイテムを入れるかを見てみましょう。</p>"
+        "title": "いいね！",
+        "content": "<strong>最初の配列を作れたね！</strong><p>次はスタックにアイテムを入れる方法を試してみよう！</p>"
       },
       {
         "step_number": 1,
-        "title": "スタックって何？（パート1）",
-        "content": "テニスボールをたくさん持っているとして、それらを失くさないように一つの箱に入れたと想像してください。箱が<b>配列</b>で、<code>[]</code> で書きます。これを<i>スタック</i>と呼んでいるんです。"
+        "title": "スタックって何？（その1）",
+        "content": "テニスボールをたくさん持ってるとき、箱に入れてなくさないようにするよね？その箱が<b>配列</b>なんだ。<code>[]</code> で書くよ。"
       },
       {
         "step_number": 2,
-        "title": "スタックって何？（パート2）",
-        "content": "箱があれば、中に物を入れたり、取り出したり、整理したりできます。JavaScriptの配列でも同じことができますよ。<p>コマンド <strong><code>stack.push(apple);</code></strong> を使ってスタックにリンゴを追加してみましょう。</p>"
+        "title": "スタックって何？（その2）",
+        "content": "箱があれば、中に物を入れたり取り出したりできるよ！JavaScriptの配列も同じなんだ。<p>コマンド <strong><code>stack.push(apple);</code></strong> を使って、リンゴを追加してみよう！</p>"
       }
     ]
   },
@@ -63,79 +63,106 @@
     "title": "配列から要素を取り出そう",
     "pattern": "^stack\\.pop\\(\\);$",
     "hints": [
-      "ヒント 1: 配列の最後の要素を取り出すには <code>pop</code> を使います。",
-      "ヒント 2: pop は括弧内に引数を必要としません。",
-      "ヒント 3: <code>stack.pop();</code> と入力してください。"
+      "ヒント 1: 配列の最後のアイテムを取り出すには <code>pop()</code> を使うよ！",
+      "ヒント 2: pop() は括弧の中に何も入れなくて大丈夫！",
+      "ヒント 3: <code>stack.pop();</code> を入力してみて！"
     ],
     "steps": [
       {
         "step_number": 0,
-        "title": "すばらしい！",
-        "content": "<strong>スタックにリンゴを入れられましたね！</strong><p>次は、配列に入れたものを取り出す方法を練習しましょう。</p>"
+        "title": "すごいね！",
+        "content": "<strong>スタックにリンゴを入れられたね！</strong><p>次は、配列からアイテムを取り出してみよう！</p>"
       },
       {
         "step_number": 1,
         "title": "要素を取り出すには？",
-        "content": "スタックから要素を取り出すには、<code>pop()</code> を使います。これは配列の最後にある要素を取り除いて、それを返します。"
+        "content": "スタックからアイテムを取り出すには、<code>pop()</code> を使うよ。配列の最後のアイテムを取り除いてくれるんだ。"
       },
       {
         "step_number": 2,
-        "title": "練習してみよう",
-        "content": "先ほど入れたリンゴを取り出しましょう。以下のコマンドを入力してください：<p><strong><code>stack.pop();</code></strong></p>"
+        "title": "やってみよう",
+        "content": "さっき追加したリンゴを取り出してみて。以下のコマンドを入力してみよう：<p><strong><code>stack.pop();</code></strong></p>"
       }
     ]
   },
   {
     "level_number": 3,
-    "title": "Armando nuestro segundo stack",
+    "title": "セカンドスタックを準備する",
     "pattern": "^let\\s+stack2\\s*=\\s*\\[\\];$",
     "hints": [
-      "ヒント 1: 新しい変数を宣言するには、キーワード 'let' を使います。",
-      "ヒント 2: 名前 'stack2' を使って新しい配列を作成しましょう。",
-      "ヒント 3: <code>let stack2 = [];</code> と入力してください。"
+      "ヒント 1: 新しい箱を作るには、'let' を使えばOK！",
+      "ヒント 2: 新しい配列に名前を付けるなら 'stack2' を使ってみて！",
+      "ヒント 3: <code>let stack2 = [];</code> って書いてみて！"
     ],
     "steps": [
       {
         "step_number": 0,
-        "title": "とてもいいですね！",
-        "content": "やりましたね！リンゴを取り出すことができました。次は別のものをスタックに入れてみましょう。"
+        "title": "ナイス！",
+        "content": "やったね！リンゴを取り出すことができたよ。次は新しいスタックを作ってみよう！"
       },
       {
         "step_number": 1,
-        "title": "Prepara tu zona de trabajo",
-        "content": "En esta fabrica siempre trabajamos con 2 stack par poder manipular mejor los objetos"
+        "title": "作業エリアを準備する",
+        "content": "この工場では、2つのスタックを使うことでアイテムをもっと便利に操作できるんだ。"
       },
       {
         "step_number": 2,
-        "title": "Empecemos",
-        "content": "crea otro stack y llamalo <p><strong><code>stack2;</code></strong></p> "
+        "title": "始めてみよう",
+        "content": "新しいスタックを作って、それに名前を付けよう：<p><strong><code>stack2;</code></strong></p>"
       }
     ]
   },
   {
     "level_number": 4,
-    "title": "inserta un kiwi en el estack2",
+    "title": "スタック2にキウイを追加する",
     "pattern": "^stack2\\.push\\(kiwi\\);$",
     "hints": [
-      "ヒント 1: 配列に要素を追加するには <code>push()</code> を使います。",
-      "ヒント 2: push は挿入する要素を括弧内に指定します。",
-      "ヒント 3: <code>stack2.push(kiwi);</code> と入力してください。"
+      "ヒント 1: 配列にアイテムを追加したいときは <code>push()</code> を使ってね！",
+      "ヒント 2: 追加するアイテムは括弧の中に書くだけ！",
+      "ヒント 3: <code>stack2.push('kiwi');</code> を試してみて！"
     ],
     "steps": [
       {
         "step_number": 0,
-        "title": "準備完了！",
-        "content": "素晴らしい！スタック2を作成しました。次に進みましょう。"
+        "title": "準備OK！",
+        "content": "やったね！スタック2を作成したよ。次に進もう！"
       },
       {
         "step_number": 1,
-        "title": "フルーツを追加する",
-        "content": "スタック2に新しいフルーツを追加しましょう。<p><strong><code>stack2.push('kiwi');</code></strong> と入力してください。</p>"
+        "title": "フルーツを追加しよう",
+        "content": "スタック2に新しいフルーツを追加してみて。<p><strong><code>stack2.push('kiwi');</code></strong> を入力してね！</p>"
       },
       {
         "step_number": 2,
         "title": "確認",
-        "content": "正しいコマンドを入力すると、スタック2にキウイが追加されます！"
+        "content": "正しいコマンドを入力すると、スタック2にキウイが追加されるよ！"
+      }
+    ]
+  },
+  {
+    "level_number": 5,
+    "title": "キウイを削除する",
+    "pattern": "^stack2\\.pop\\(\\);$",
+    "hints": [
+      "ヒント 1: 配列の最後のアイテムを取り出すなら <code>pop()</code> を使おう！",
+      "ヒント 2: pop() は特に引数はいらないよ！",
+      "ヒント 3: <code>stack2.pop();</code> を入力してみて！"
+    ],
+    "steps": [
+      {
+        "step_number": 0,
+        "title": "やってみよう！",
+        "content": "スタック2からキウイを取り出してみよう！"
+      },
+      {
+        "step_number": 1,
+        "title": "pop の使い方",
+        "content": "<code>pop()</code> を使うと、配列の最後に追加されたアイテムを削除して返してくれるよ。<p><strong><code>stack2.pop();</code></strong> を入力してみて！</p>"
+      },
+      {
+        "step_number": 2,
+        "title": "成功！",
+        "content": "正しいコマンドを入力すると、スタック2からキウイが削除されるよ！"
       }
     ]
   }
