@@ -1,49 +1,81 @@
-body{
-  margin: 0px;
+body {
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: teal;
   min-height: 100vh;
-  max-height: 100vh;
   overflow: hidden;
+  user-select: none;
+  /* Wooden texture */
+  background-image: url('imagenes/darckBackground.jpg'); /* Replace with your image */
+  background-size: cover; /* Cover the entire viewport */
+  background-repeat: no-repeat;
+  background-position: center;
 }
-.start-screen{
+.start-screen {
+  position: absolute;
+  inset: 0; /* This replaces width/height 100vw/vh */
   display: flex;
   flex-direction: column;
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
   justify-content: center;
   align-items: center;
   z-index: 1;
   background-color: rgb(155, 223, 99);
 }
-.game-screen{
+.game-screen {
+  /* Layout properties */
   height: 86vh;
   padding: 20px;
-  border: 10px solid #000; /* Añadido color negro para consistencia visual */
-  aspect-ratio: 1240 / 720;
   min-width: 829px;
-  background: 
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url('imagenes/fondo.webp') center center / cover no-repeat;
+  
+  /* Grid setup */
   display: grid;
   grid-template-columns: 70% 30%;
   grid-template-rows: 1fr;
   gap: 5px;
+  
+  /* Visual styling */
+  border: 10px solid #cfc7b4;
   overflow: hidden;
+  aspect-ratio: 16 / 9;  /* More standard ratio */
+  
+  /* Background setup */
+  background: 
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url('imagenes/fondo.webp') center / cover;
 }
-main{
+@media (max-width: 1024px) {
+  .game-screen {
+    min-width: unset;  /* Remove minimum width on smaller screens */
+    width: 95vw;      /* Use most of the viewport width */
+    height: auto;     /* Let height be determined by aspect ratio */
+  }
+}
+main {
+  /* Grid structure */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr 5fr 5fr;
   grid-template-areas: 
-  "name1 frutas name2"
-  "stack1 frutas stack2"
-  ". embudo .";
-  height: 95%;
+    "name1 frutas name2"
+    "stack1 frutas stack2"
+    ". embudo .";
+    
+  /* Layout adjustments */
+  height: 100%;  /* Take full height of parent */
+  gap: 10px;     /* Add consistent spacing */
   justify-items: center;
+  align-items: start;  /* Align items to the top by default */
+}
+@media (max-width: 768px) {
+  main {
+    gap: 5px;  /* Reduce spacing on smaller screens */
+  }
 }
 .frutas{
   grid-area: frutas;
@@ -85,73 +117,141 @@ main{
 .name2{
   grid-area: name2;
 }
-.stack-1{
-  grid-area: stack1;
+/* Common styles for both stacks */
+.stack-1,
+.stack-2 {
+  /* Grid layout */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  
+  /* Sizing */
+  width: 100%;
+  height: 100%;
+  
+  /* Visual styling */
   border: 5px solid rgb(219, 224, 226);
   background-color: rgba(147, 185, 179, 0.973);
   overflow: auto;
-  width: -webkit-fill-available;
-  align-items: center;
-  justify-items: center;
+  
+  /* Animation */
+  transition: all 0.3s ease;
+
+  /* Add these for better visual feedback */
+  position: relative;
+  
+  /* Optional: Add a subtle hover effect */
+  &:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
 }
-.stack-2{
-  grid-area: stack2;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  border: 5px solid rgb(219, 224, 226);
-  background-color: rgba(147, 185, 179, 0.973);
-  overflow: auto;
-  width: -webkit-fill-available;
-  align-items: center;
-  justify-items: center;
-}
+
+/* Individual grid areas */
+.stack-1 { grid-area: stack1; }
+.stack-2 { grid-area: stack2; }
 #stack-1, #stack-2 {
   transition: all 0.5s ease-in-out;
 }
-.box{
+.box {
   margin: 0;
   display: flex;
-  position: sticky;
-  font-size: 2rem;
-  width: fit-content;
-  height: fit-content;
-  background-color: rgba(245, 243, 247, 0.959);
+  align-items: center;
+  justify-content: center;
+  
+  /* Improved width/height */
+  min-width: 100px;
+  min-height: 50px;
+  
+  /* Flexible font size */
+  font-size: clamp(1.5rem, 2vw, 2rem);
 
-  border: 3px solid rgb(82, 50, 11);
+  /* Better background & border */
+  background-color: rgba(245, 243, 247, 0.959);
+  border: 3px solid rgb(128, 72, 28);
+  
+  /* Visual improvement */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-aside{
-  margin-left: 2px;
+
+aside {
+  /* Layout */
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  height: 95%;
+  gap: 10px; /* Instead of margin adjustments */
+  align-items: center;
+
+  /* Better height handling */
+  height: 100vh;
+
+  /* Responsive width */
+  width: clamp(200px, 25vw, 300px);
 }
+
 #inputPlayer {
-  width: 90%;
-  height: 25%;
-  margin: 0 auto;
-  padding: 10px;
+  width: 95%;
+  
+  /* Improved height handling */
+  height: clamp(20px, 20vh, 500px);
+  min-height: 20PX;
+  
+  /* Consistent padding */
+  padding: 8px;
+  
+  /* Visual styling */
   border-radius: 12px;
   background-color: rgba(8, 115, 177, 0.8);
   font-weight: bold;
-  color: antiquewhite;
+  color: #f5f5f5; /* Improved readability */
   border: 2px solid silver;
   font-family: 'Courier New', Courier, monospace;
   font-size: 1.2rem;
   resize: vertical;
-  padding: 5px;
   box-sizing: border-box;
+  
+  /* Smooth transitions */
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+  
+  /* Ensure scroll is always visible */
+  overflow-y: auto;
+
+  resize: none;
+
 }
+
+/* Themed Scrollbar */
+#inputPlayer::-webkit-scrollbar {
+  width: 15px; /* Width of the scrollbar */
+  border-radius: 12px;
+}
+
+/* Scrollbar Track */
+#inputPlayer::-webkit-scrollbar-track {
+  background: rgba(8, 115, 177, 0.5); /* Same theme as input background */
+  border-radius: 12px;
+}
+
+/* Scrollbar Handle */
+#inputPlayer::-webkit-scrollbar-thumb {
+  background: aquamarine; /* Match the glow effect */
+  border-radius: 12px;
+  border: 2px solid silver;
+}
+
+/* Scrollbar Handle on Hover */
+#inputPlayer::-webkit-scrollbar-thumb:hover {
+  background: rgba(127, 255, 212, 0.8); /* Slightly lighter aquamarine */
+}
+
+
 #inputPlayer:focus {
   outline: none;
   border: 3px solid aquamarine;
   box-shadow: 0 0 10px aquamarine;
 }
+
 .manual {
   background: rgba(255, 244, 230, 0.9);
     padding: 10px;
@@ -285,25 +385,28 @@ aside{
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease;
-}
 
+}
 .level:hover .tooltip {
   opacity: 1;
 }
 
 .oculto{
   display: none;
+
 }
 .character{
   height: 45%;
   display: flex;
   justify-content: center;
 }
+
 aside img{
   display: flex;
   width: auto;
-  height: 100%;
+  height: 95%;
 }
+
 .buttons{
   display: flex;
   justify-content: space-evenly;
