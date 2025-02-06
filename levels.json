@@ -119,7 +119,7 @@
     "hints": [
       "ヒント 1: 配列にアイテムを追加したいときは <code>push()</code> を使ってね！",
       "ヒント 2: 追加するアイテムは括弧の中に書くだけ！",
-      "ヒント 3: <code>stack2.push('kiwi');</code> を試してみて！"
+      "ヒント 3: <code>stack2.push(kiwi);</code> を試してみて！"
     ],
     "steps": [
       {
@@ -130,7 +130,7 @@
       {
         "step_number": 1,
         "title": "フルーツを追加しよう",
-        "content": "スタック2に新しいフルーツを追加してみて。<p><strong><code>stack2.push('kiwi');</code></strong> を入力してね！</p>"
+        "content": "スタック2に新しいフルーツを追加してみて。<p><strong><code>stack2.push(kiwi);</code></strong> を入力してね！</p>"
       },
       {
         "step_number": 2,
