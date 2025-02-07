@@ -289,7 +289,9 @@ startButton.addEventListener('click', () => {
       case 4:
         let kiwi = newBox('Frutas', 6)
         stackContainer2.appendChild(kiwi)
-        break;
+        actualizarExpresion('crazy')
+        alert('この後はまっだ整理中です！ここまでお疲れ様です。')
+        return;
     }
     setTimeout(() => {
       actualizarExpresion('speaking');
@@ -300,7 +302,9 @@ startButton.addEventListener('click', () => {
   } else {
     console.log(userAtemps);
     
-    actualizarExpresion('sad');
+    if (userAtemps != 2|| userAtemps != 4 || userAtemps != 9) {
+      actualizarExpresion('verySad');
+    }
 
     userAtemps++
     switch (userAtemps) {

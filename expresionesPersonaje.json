@@ -18,5 +18,13 @@
   {
     "nombre": "mad",
     "imagen": "imagenes/Cat serious.png"
+  },
+  {
+    "nombre": "verySad",
+    "imagen": "imagenes/Cat verySad.gif"
+  },
+  {
+    "nombre": "crazy",
+    "imagen": "imagenes/Cat crazy.gif"
   }
 ]
