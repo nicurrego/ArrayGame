@@ -135,7 +135,7 @@
       {
         "step_number": 1,
         "title": "フルーツを追加しよう",
-        "content": "スタック2に新しいフルーツを追加してみて。<p><strong><code>stack2.push('kiwi);</code></strong> を入力してね！</p>"
+        "content": "スタック2に新しいフルーツを追加してみて。<p><strong><code>kiwi</code></strong> を入れてね！</p>"
       },
       {
         "step_number": 2,
